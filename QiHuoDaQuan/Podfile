@@ -1,0 +1,20 @@
+#platform :ios, '10.0'
+target 'QiHuoDaQuan' do
+  source 'https://github.com/CocoaPods/Specs.git'
+    pod 'AFNetworking’
+    pod 'SDWebImage'
+    pod 'Masonry'
+    pod 'MJRefresh'
+    pod 'MJExtension'
+    pod 'MBProgressHUD'
+    pod 'FSCalendar'
+    pod 'JSONModel'
+    pod 'UMCCommon', '~> 2.1.1'
+    pod 'UMCSecurityPlugins'
+    # U-Share SDK UI模块（分享面板，建议添加）
+    pod 'UMCShare/UI'
+    # 集成微信(完整版14.4M)
+    pod 'UMCShare/Social/WeChat'
+    pod 'FDFullscreenPopGesture', '~> 1.1'
+    pod 'XMLDictionary', '~> 1.4'
+end
