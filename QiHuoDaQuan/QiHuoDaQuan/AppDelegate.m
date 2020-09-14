@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
+#import "TabbarViewController.h"
+#import "bookModel.h"
 @interface AppDelegate ()
+@property(nonatomic,strong)NSMutableArray * chargeList;
 
 @end
 
@@ -16,26 +18,38 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+     self.window.backgroundColor = [UIColor whiteColor];
+     TabbarViewController *tabVC = [[TabbarViewController alloc] init];
+     self.window.rootViewController = tabVC;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
-
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
+- (void)getBooks{
+    NSString *bookUrl = @"https://d.wanjinig.cn/yapi/book/book_list?num=20&page=3&type=2";
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
+    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html",nil];
+    [manager GET:bookUrl parameters:nil headers:nil progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray * array = [bookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"data"]];
+        self.chargeList = [NSMutableArray arrayWithArray: array];
+        [self getMoreBook];
+    } failure:nil];
 }
 
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+-(void)getMoreBook{
+    NSString *bookUrl = @"https://d.wanjinig.cn/yapi/book/book_list?num=20&page=4&type=1";
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager.requestSerializer setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
+    manager.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json",@"text/json",@"text/javascript",@"text/plain",@"text/html",nil];
+    [manager GET:bookUrl parameters:nil headers:nil progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray * array = [bookModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"][@"data"]];
+        [self.chargeList addObjectsFromArray:array];
+        NSData * mutData = [NSKeyedArchiver archivedDataWithRootObject:self.chargeList];
+        [[NSUserDefaults standardUserDefaults] setObject:mutData forKey:@"mybooks"];
+    } failure:nil];
 }
-
-
 @end

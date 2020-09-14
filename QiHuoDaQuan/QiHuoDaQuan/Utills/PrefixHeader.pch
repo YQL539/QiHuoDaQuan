@@ -1,0 +1,24 @@
+//
+//  PrefixHeader.pch
+//  QiHuoDaQuan
+//
+//  Created by qinglong yang on 2020/9/4.
+//  Copyright © 2020 Y. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import "Util.h"
+#import "Constant.h"
+#import "Masonry.h"
+#import "UIView+Frame.h"
+#import "NSString+HTML.h"
+#import "NSObject+Model.h"
+#import "AFNetworking.h"
+#import <MJRefresh.h>
+#import <MJExtension.h>
+#import <SDWebImage.h>
+#import "ImageButton.h"
+#import "userModel.h"
+#import "MBProgressHUD.h"
+#endif /* PrefixHeader_pch */
