@@ -21,4 +21,5 @@
 #import "ImageButton.h"
 #import "userModel.h"
 #import "MBProgressHUD.h"
+#import "JSONModel.h"
 #endif /* PrefixHeader_pch */

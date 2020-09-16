@@ -10,17 +10,6 @@
 
 @implementation BooksTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 +(instancetype)initCellWithTableView:(UITableView *)tableview
 {
     static NSString *ID = @"BooksTableViewCell";
@@ -41,50 +30,56 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        [self initViews];
+       self.accessoryType = UITableViewCellAccessoryNone;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.iconView = [[UIImageView alloc] init];
+        [self.contentView addSubview:self.iconView];
+        
+        self.titleLabel = [[UILabel alloc] init];
+        self.titleLabel.font = [UIFont systemFontOfSize:16];
+        self.titleLabel.numberOfLines = 2;
+        self.titleLabel.textAlignment = NSTextAlignmentLeft;
+        [self.contentView addSubview:self.titleLabel];
+        
+        self.authorLabel = [[UILabel alloc] init];
+        self.authorLabel.font = [UIFont systemFontOfSize:16];
+        self.authorLabel.textAlignment = NSTextAlignmentLeft;
+        [self.contentView addSubview:self.authorLabel];
+        
+        self.detailLabel = [[UILabel alloc] init];
+        self.detailLabel.font = [UIFont systemFontOfSize:14];
+        self.detailLabel.numberOfLines = 4;
+        self.detailLabel.textColor = [UIColor lightGrayColor];
+        self.detailLabel.textAlignment = NSTextAlignmentLeft;
+        [self.contentView addSubview:self.detailLabel];
+
+        self.line = [[UIView alloc] init];
+        [self.contentView addSubview:self.line];
     }
     return self;
 }
 
-- (void)initViews {
-    self.accessoryType = UITableViewCellAccessoryNone;
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.iconView = [[UIImageView alloc] init];
-    [self.contentView addSubview:self.iconView];
-    
-    self.titleLabel = [[UILabel alloc] init];
-    self.titleLabel.font = [UIFont systemFontOfSize:17];
-    self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:self.titleLabel];
-    
-    self.detailLabel = [[UILabel alloc] init];
-    self.detailLabel.font = [UIFont systemFontOfSize:14];
-    self.detailLabel.numberOfLines = 5;
-    self.detailLabel.textColor = [UIColor lightGrayColor];
-    self.detailLabel.textAlignment = NSTextAlignmentLeft;
-    [self.contentView addSubview:self.detailLabel];
 
-    self.line = [[UIView alloc] init];
-    [self.contentView addSubview:self.line];
+//填充cell
+-(void)showDataWithModel:(bookModel *)model{
+    self.titleLabel.text = model.title;
+    self.detailLabel.text = model.desc;
+    self.authorLabel.text = [NSString stringWithFormat:@"作者： %@",model.author];
+    
+    //使用SDWebImage第三方库
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.images] placeholderImage:nil];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat iMarginH = GetWidth(15.f);
     CGFloat iMarginW = GetWidth(15.f);
-    CGFloat iIconWidth = self.height - iMarginH * 2;
-    self.iconView.frame = CGRectMake(SCREENWIDTH - iIconWidth - iMarginW, iMarginH, iIconWidth, iIconWidth);
-    self.titleLabel.frame = CGRectMake(iMarginW, iMarginH, SCREENWIDTH - iMarginW * 3 - iIconWidth, 30);
-    self.detailLabel.frame = CGRectMake(iMarginW, CGRectGetMaxY(self.titleLabel.frame), SCREENWIDTH - iMarginW * 3 - iIconWidth, self.height - 30 - iMarginH);
+    CGFloat iIconWidth = self.height - iMarginH*2;
+    self.iconView.frame = CGRectMake(iMarginW, iMarginH, iIconWidth, iIconWidth);
+    self.titleLabel.frame = CGRectMake(iIconWidth + iMarginW * 2, iMarginH, SCREENWIDTH - iMarginW * 3 - iIconWidth, 40);
+    self.authorLabel.frame = CGRectMake(iIconWidth + iMarginW*2, CGRectGetMaxY(self.titleLabel.frame), SCREENWIDTH - iMarginW * 3 - iIconWidth, 20);
+     self.detailLabel.frame = CGRectMake(iIconWidth + iMarginW *2, CGRectGetMaxY(self.authorLabel.frame), SCREENWIDTH - iMarginW * 3 - iIconWidth, self.height - 20 - iMarginH - 20 - iMarginH *2);
     self.line.frame = CGRectMake(0, self.height - 1.f, self.width, 1.f);
-}
-
-//填充cell
--(void)showDataWithModel:(bookModel *)model{
-    self.titleLabel.text = model.title;
-    self.detailLabel.text = model.desc;
-    //使用SDWebImage第三方库
-    [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.images] placeholderImage:nil];
 }
 
 @end

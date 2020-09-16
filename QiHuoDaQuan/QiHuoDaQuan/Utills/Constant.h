@@ -42,6 +42,9 @@
 #define HOME_INDICATOR_HEIGHT ((IS_IPHONE_X==YES || IS_IPHONE_Xr ==YES || IS_IPHONE_Xs== YES || IS_IPHONE_Xs_Max== YES) ? 34.f : 0.f)
 //适配尺寸
 #define GetWidth(inch) [Util getScaleWidth:inch]
+#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+
+#define RGB(r,g,b) RGBA(r,g,b,1.0f)
 
 #define MAINCOLOR     [Util GetColor:@"#F4D43E"]
 #define RandColor RGB(arc4random_uniform(255), arc4random_uniform(255), arc4random_uniform(255))

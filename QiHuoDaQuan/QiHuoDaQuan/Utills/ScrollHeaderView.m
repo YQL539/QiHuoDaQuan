@@ -8,9 +8,7 @@
 
 #import "ScrollHeaderView.h"
 @interface ScrollHeaderView ()
-@property (strong, nonatomic) UIView *bgView;
-@property (strong, nonatomic) UIView *colorView;
-@property (strong, nonatomic) UIButton *lastButton;
+
 @end
 @implementation ScrollHeaderView
 
@@ -21,19 +19,15 @@
         [self addSubview:self.bgView];
         
         CGFloat BW = rect.size.width/titleArray.count;
-        self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, rect.size.height - 2, BW, 2)];
-        self.colorView.backgroundColor = [UIColor redColor];
-        self.colorView.layer.cornerRadius = 5;
-        self.colorView.layer.masksToBounds = YES;
-        [self.bgView addSubview:self.colorView];
+        
         
         for (int i = 0 ; i < titleArray.count; i ++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setTitle:titleArray[i] forState:UIControlStateNormal];
-            button.titleLabel.font = [UIFont systemFontOfSize:14];
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
-            button.backgroundColor = MAINCOLOR;
+            button.titleLabel.font = [UIFont systemFontOfSize:15];
+            [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            button.backgroundColor = [UIColor whiteColor];
             button.frame = CGRectMake(BW * i, 0, BW, rect.size.height);
             if (i == 0) {
                 button.selected = YES;
@@ -45,6 +39,13 @@
             [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
             [self.bgView addSubview:button];
         }
+        
+        self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, rect.size.height - 2, BW, 2)];
+        self.colorView.backgroundColor = [UIColor redColor];
+        self.colorView.layer.cornerRadius = 5;
+        self.colorView.layer.masksToBounds = YES;
+        [self.bgView addSubview:self.colorView];
+        
     }
     return self;
 }

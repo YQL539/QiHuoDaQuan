@@ -73,6 +73,26 @@
 		D6D73E6D250B6D0C00A328B8 /* bookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E6C250B6D0C00A328B8 /* bookModel.m */; };
 		D6D73E70250B6F4300A328B8 /* BooksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E6F250B6F4300A328B8 /* BooksViewController.m */; };
 		D6D73E73250B7C5900A328B8 /* BooksTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E72250B7C5900A328B8 /* BooksTableViewCell.m */; };
+		D6D73E77250F4F0300A328B8 /* BookDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E75250F4F0300A328B8 /* BookDetailViewController.m */; };
+		D6D73E78250F4F0300A328B8 /* BookDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73E76250F4F0300A328B8 /* BookDetailViewController.xib */; };
+		D6D73E7C2510AF7F00A328B8 /* newsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E7B2510AF7F00A328B8 /* newsModel.m */; };
+		D6D73E802510AF9500A328B8 /* NewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E7E2510AF9500A328B8 /* NewsTableViewCell.m */; };
+		D6D73E812510AF9500A328B8 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73E7F2510AF9500A328B8 /* NewsTableViewCell.xib */; };
+		D6D73E842510AFAA00A328B8 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E832510AFA900A328B8 /* NewsViewController.m */; };
+		D6D73E872510B2EA00A328B8 /* SheQuModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E862510B2EA00A328B8 /* SheQuModel.m */; };
+		D6D73E8A2510B38D00A328B8 /* SheQuDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E892510B38D00A328B8 /* SheQuDetailModel.m */; };
+		D6D73E8E2510C41C00A328B8 /* SheQuLunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E8C2510C41C00A328B8 /* SheQuLunchViewController.m */; };
+		D6D73E8F2510C41C00A328B8 /* SheQuLunchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73E8D2510C41C00A328B8 /* SheQuLunchViewController.xib */; };
+		D6D73E932510C4A700A328B8 /* SheQuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E912510C4A600A328B8 /* SheQuTableViewCell.m */; };
+		D6D73E942510C4A700A328B8 /* SheQuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73E922510C4A700A328B8 /* SheQuTableViewCell.xib */; };
+		D6D73E9D2510C70600A328B8 /* SheQuDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73E9B2510C70600A328B8 /* SheQuDetailViewController.m */; };
+		D6D73E9E2510C70600A328B8 /* SheQuDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73E9C2510C70600A328B8 /* SheQuDetailViewController.xib */; };
+		D6D73EA22511B81400A328B8 /* SheQuReplyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73EA02511B81400A328B8 /* SheQuReplyTableViewCell.m */; };
+		D6D73EA32511B81400A328B8 /* SheQuReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73EA12511B81400A328B8 /* SheQuReplyTableViewCell.xib */; };
+		D6D73EA72511B8B300A328B8 /* SheQuDetailUITableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73EA52511B8B300A328B8 /* SheQuDetailUITableViewCell.m */; };
+		D6D73EA82511B8B300A328B8 /* SheQuDetailUITableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73EA62511B8B300A328B8 /* SheQuDetailUITableViewCell.xib */; };
+		D6D73EAC2511EFA100A328B8 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73EAA2511EFA100A328B8 /* MyViewController.m */; };
+		D6D73EAD2511EFA100A328B8 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6D73EAB2511EFA100A328B8 /* MyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +231,38 @@
 		D6D73E6F250B6F4300A328B8 /* BooksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BooksViewController.m; sourceTree = "<group>"; };
 		D6D73E71250B7C5900A328B8 /* BooksTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BooksTableViewCell.h; sourceTree = "<group>"; };
 		D6D73E72250B7C5900A328B8 /* BooksTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BooksTableViewCell.m; sourceTree = "<group>"; };
+		D6D73E74250F4F0300A328B8 /* BookDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BookDetailViewController.h; sourceTree = "<group>"; };
+		D6D73E75250F4F0300A328B8 /* BookDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BookDetailViewController.m; sourceTree = "<group>"; };
+		D6D73E76250F4F0300A328B8 /* BookDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookDetailViewController.xib; sourceTree = "<group>"; };
+		D6D73E7A2510AF7F00A328B8 /* newsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newsModel.h; sourceTree = "<group>"; };
+		D6D73E7B2510AF7F00A328B8 /* newsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newsModel.m; sourceTree = "<group>"; };
+		D6D73E7D2510AF9500A328B8 /* NewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsTableViewCell.h; sourceTree = "<group>"; };
+		D6D73E7E2510AF9500A328B8 /* NewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewCell.m; sourceTree = "<group>"; };
+		D6D73E7F2510AF9500A328B8 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		D6D73E822510AFA900A328B8 /* NewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
+		D6D73E832510AFA900A328B8 /* NewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
+		D6D73E852510B2EA00A328B8 /* SheQuModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuModel.h; sourceTree = "<group>"; };
+		D6D73E862510B2EA00A328B8 /* SheQuModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuModel.m; sourceTree = "<group>"; };
+		D6D73E882510B38D00A328B8 /* SheQuDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuDetailModel.h; sourceTree = "<group>"; };
+		D6D73E892510B38D00A328B8 /* SheQuDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuDetailModel.m; sourceTree = "<group>"; };
+		D6D73E8B2510C41C00A328B8 /* SheQuLunchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuLunchViewController.h; sourceTree = "<group>"; };
+		D6D73E8C2510C41C00A328B8 /* SheQuLunchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuLunchViewController.m; sourceTree = "<group>"; };
+		D6D73E8D2510C41C00A328B8 /* SheQuLunchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheQuLunchViewController.xib; sourceTree = "<group>"; };
+		D6D73E902510C4A600A328B8 /* SheQuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuTableViewCell.h; sourceTree = "<group>"; };
+		D6D73E912510C4A600A328B8 /* SheQuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuTableViewCell.m; sourceTree = "<group>"; };
+		D6D73E922510C4A700A328B8 /* SheQuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheQuTableViewCell.xib; sourceTree = "<group>"; };
+		D6D73E9A2510C70600A328B8 /* SheQuDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuDetailViewController.h; sourceTree = "<group>"; };
+		D6D73E9B2510C70600A328B8 /* SheQuDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuDetailViewController.m; sourceTree = "<group>"; };
+		D6D73E9C2510C70600A328B8 /* SheQuDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheQuDetailViewController.xib; sourceTree = "<group>"; };
+		D6D73E9F2511B81400A328B8 /* SheQuReplyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuReplyTableViewCell.h; sourceTree = "<group>"; };
+		D6D73EA02511B81400A328B8 /* SheQuReplyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuReplyTableViewCell.m; sourceTree = "<group>"; };
+		D6D73EA12511B81400A328B8 /* SheQuReplyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheQuReplyTableViewCell.xib; sourceTree = "<group>"; };
+		D6D73EA42511B8B300A328B8 /* SheQuDetailUITableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SheQuDetailUITableViewCell.h; sourceTree = "<group>"; };
+		D6D73EA52511B8B300A328B8 /* SheQuDetailUITableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SheQuDetailUITableViewCell.m; sourceTree = "<group>"; };
+		D6D73EA62511B8B300A328B8 /* SheQuDetailUITableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SheQuDetailUITableViewCell.xib; sourceTree = "<group>"; };
+		D6D73EA92511EFA100A328B8 /* MyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		D6D73EAA2511EFA100A328B8 /* MyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		D6D73EAB2511EFA100A328B8 /* MyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +338,9 @@
 			children = (
 				D6D73DDE2505D1E600A328B8 /* MeViewController.h */,
 				D6D73DDF2505D1E600A328B8 /* MeViewController.m */,
+				D6D73EA92511EFA100A328B8 /* MyViewController.h */,
+				D6D73EAA2511EFA100A328B8 /* MyViewController.m */,
+				D6D73EAB2511EFA100A328B8 /* MyViewController.xib */,
 				D6D73E0525062FA600A328B8 /* MeTableViewCell.h */,
 				D6D73E0625062FA600A328B8 /* MeTableViewCell.m */,
 				D6D73E0725062FA600A328B8 /* MeTableViewCell.xib */,
@@ -329,6 +384,25 @@
 			children = (
 				D6D73DDB2505D1DA00A328B8 /* SheQuViewController.h */,
 				D6D73DDC2505D1DA00A328B8 /* SheQuViewController.m */,
+				D6D73E9A2510C70600A328B8 /* SheQuDetailViewController.h */,
+				D6D73E9B2510C70600A328B8 /* SheQuDetailViewController.m */,
+				D6D73E9C2510C70600A328B8 /* SheQuDetailViewController.xib */,
+				D6D73E902510C4A600A328B8 /* SheQuTableViewCell.h */,
+				D6D73E912510C4A600A328B8 /* SheQuTableViewCell.m */,
+				D6D73E922510C4A700A328B8 /* SheQuTableViewCell.xib */,
+				D6D73E8B2510C41C00A328B8 /* SheQuLunchViewController.h */,
+				D6D73E8C2510C41C00A328B8 /* SheQuLunchViewController.m */,
+				D6D73E8D2510C41C00A328B8 /* SheQuLunchViewController.xib */,
+				D6D73E9F2511B81400A328B8 /* SheQuReplyTableViewCell.h */,
+				D6D73EA02511B81400A328B8 /* SheQuReplyTableViewCell.m */,
+				D6D73EA12511B81400A328B8 /* SheQuReplyTableViewCell.xib */,
+				D6D73EA42511B8B300A328B8 /* SheQuDetailUITableViewCell.h */,
+				D6D73EA52511B8B300A328B8 /* SheQuDetailUITableViewCell.m */,
+				D6D73EA62511B8B300A328B8 /* SheQuDetailUITableViewCell.xib */,
+				D6D73E852510B2EA00A328B8 /* SheQuModel.h */,
+				D6D73E862510B2EA00A328B8 /* SheQuModel.m */,
+				D6D73E882510B38D00A328B8 /* SheQuDetailModel.h */,
+				D6D73E892510B38D00A328B8 /* SheQuDetailModel.m */,
 			);
 			path = SheQu;
 			sourceTree = "<group>";
@@ -359,6 +433,7 @@
 		D68551142502240900C25FFF /* QiHuoDaQuan */ = {
 			isa = PBXGroup;
 			children = (
+				D6D73E792510AD3100A328B8 /* News */,
 				D6D73E6A250B6CF800A328B8 /* Books */,
 				D6D73E51250B5FEF00A328B8 /* ImageLine */,
 				D6D73E48250B207400A328B8 /* Login */,
@@ -551,8 +626,25 @@
 				D6D73E6F250B6F4300A328B8 /* BooksViewController.m */,
 				D6D73E71250B7C5900A328B8 /* BooksTableViewCell.h */,
 				D6D73E72250B7C5900A328B8 /* BooksTableViewCell.m */,
+				D6D73E74250F4F0300A328B8 /* BookDetailViewController.h */,
+				D6D73E75250F4F0300A328B8 /* BookDetailViewController.m */,
+				D6D73E76250F4F0300A328B8 /* BookDetailViewController.xib */,
 			);
 			path = Books;
+			sourceTree = "<group>";
+		};
+		D6D73E792510AD3100A328B8 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				D6D73E7A2510AF7F00A328B8 /* newsModel.h */,
+				D6D73E7B2510AF7F00A328B8 /* newsModel.m */,
+				D6D73E7D2510AF9500A328B8 /* NewsTableViewCell.h */,
+				D6D73E7E2510AF9500A328B8 /* NewsTableViewCell.m */,
+				D6D73E7F2510AF9500A328B8 /* NewsTableViewCell.xib */,
+				D6D73E822510AFA900A328B8 /* NewsViewController.h */,
+				D6D73E832510AFA900A328B8 /* NewsViewController.m */,
+			);
+			path = News;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -660,6 +752,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D73E942510C4A700A328B8 /* SheQuTableViewCell.xib in Resources */,
 				D6D73E5C250B61ED00A328B8 /* 2.png in Resources */,
 				D6D73E62250B61ED00A328B8 /* 1.png in Resources */,
 				D6D73E5E250B61ED00A328B8 /* 7.png in Resources */,
@@ -671,14 +764,21 @@
 				D6D73E65250B61ED00A328B8 /* 4.png in Resources */,
 				D68551222502240B00C25FFF /* Assets.xcassets in Resources */,
 				D6D73E412508DA9800A328B8 /* marketTableViewCell.xib in Resources */,
+				D6D73E78250F4F0300A328B8 /* BookDetailViewController.xib in Resources */,
 				D685514B2502248300C25FFF /* Podfile in Resources */,
+				D6D73EAD2511EFA100A328B8 /* MyViewController.xib in Resources */,
 				D68551202502240900C25FFF /* Main.storyboard in Resources */,
 				D6D73E60250B61ED00A328B8 /* 6.png in Resources */,
+				D6D73EA82511B8B300A328B8 /* SheQuDetailUITableViewCell.xib in Resources */,
 				D6D73E61250B61ED00A328B8 /* 10.png in Resources */,
 				D6D73E5F250B61ED00A328B8 /* 9.png in Resources */,
+				D6D73EA32511B81400A328B8 /* SheQuReplyTableViewCell.xib in Resources */,
+				D6D73E8F2510C41C00A328B8 /* SheQuLunchViewController.xib in Resources */,
 				D6D73E332508B04B00A328B8 /* Data.plist in Resources */,
+				D6D73E812510AF9500A328B8 /* NewsTableViewCell.xib in Resources */,
 				D6D73E5D250B61ED00A328B8 /* 5.png in Resources */,
 				D6D73E4C250B209300A328B8 /* logo.mp4 in Resources */,
+				D6D73E9E2510C70600A328B8 /* SheQuDetailViewController.xib in Resources */,
 				D6D73E0925062FA600A328B8 /* MeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,41 +847,53 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6D73E362508B15000A328B8 /* data.m in Sources */,
+				D6D73EA72511B8B300A328B8 /* SheQuDetailUITableViewCell.m in Sources */,
+				D6D73E9D2510C70600A328B8 /* SheQuDetailViewController.m in Sources */,
 				D6D73E6D250B6D0C00A328B8 /* bookModel.m in Sources */,
 				D6D73E272506379000A328B8 /* CycleScrollView.m in Sources */,
 				D6D73DDA2505D1CD00A328B8 /* MainViewController.m in Sources */,
+				D6D73E7C2510AF7F00A328B8 /* newsModel.m in Sources */,
 				D6D73E402508DA9800A328B8 /* marketTableViewCell.m in Sources */,
 				D6D73DDD2505D1DA00A328B8 /* SheQuViewController.m in Sources */,
 				D6D73DCA2502399900A328B8 /* UIView+Frame.m in Sources */,
 				D6D73E73250B7C5900A328B8 /* BooksTableViewCell.m in Sources */,
 				D6D73E68250B620C00A328B8 /* LineViewController.m in Sources */,
+				D6D73EA22511B81400A328B8 /* SheQuReplyTableViewCell.m in Sources */,
 				D685511D2502240900C25FFF /* ViewController.m in Sources */,
 				D6D73DE62505D3AA00A328B8 /* YMRSAHelper.m in Sources */,
 				D6D73DFE2505D3E900A328B8 /* DCCycleScrollView.m in Sources */,
 				D6D73E50250B4A6800A328B8 /* userModel.m in Sources */,
+				D6D73E872510B2EA00A328B8 /* SheQuModel.m in Sources */,
 				D6D73E2B25063B3200A328B8 /* ImageButton.m in Sources */,
+				D6D73E842510AFAA00A328B8 /* NewsViewController.m in Sources */,
 				D6D73E232506379000A328B8 /* CarouselView.m in Sources */,
 				D6D73DFF2505D3E900A328B8 /* DCCycleScrollViewCell.m in Sources */,
 				D6D73DD6250506CB00A328B8 /* NavigationViewController.m in Sources */,
 				D6D73DD32505067000A328B8 /* TabbarViewController.m in Sources */,
 				D6D73E44250B1BD400A328B8 /* MQGradientProgressView.m in Sources */,
+				D6D73E932510C4A700A328B8 /* SheQuTableViewCell.m in Sources */,
 				D6D73E022505D3E900A328B8 /* SVProgressHUD.m in Sources */,
 				D6D73E252506379000A328B8 /* HeadTableViewCell.m in Sources */,
 				D68551172502240900C25FFF /* AppDelegate.m in Sources */,
+				D6D73E77250F4F0300A328B8 /* BookDetailViewController.m in Sources */,
 				D6D73DCD2505056D00A328B8 /* NSString+HTML.m in Sources */,
 				D6D73E242506379000A328B8 /* MoreTableViewCell.m in Sources */,
 				D6D73E0825062FA600A328B8 /* MeTableViewCell.m in Sources */,
 				D6D73E262506379000A328B8 /* LPButton.m in Sources */,
 				D6D73DFC2505D3E900A328B8 /* LLPagerController.m in Sources */,
 				D6D73E282506379000A328B8 /* BroadcastView.m in Sources */,
+				D6D73E802510AF9500A328B8 /* NewsTableViewCell.m in Sources */,
 				D6D73DFD2505D3E900A328B8 /* DCCycleScrollViewFlowLayout.m in Sources */,
 				D68551282502240B00C25FFF /* main.m in Sources */,
 				D6D73DE02505D1E600A328B8 /* MeViewController.m in Sources */,
 				D6D73DE32505D1F300A328B8 /* MarketViewController.m in Sources */,
+				D6D73E8A2510B38D00A328B8 /* SheQuDetailModel.m in Sources */,
 				D6D73E70250B6F4300A328B8 /* BooksViewController.m in Sources */,
 				D6D73E032505D3E900A328B8 /* SVIndefiniteAnimatedView.m in Sources */,
+				D6D73EAC2511EFA100A328B8 /* MyViewController.m in Sources */,
 				D6D73E0D25062FB900A328B8 /* TopTableViewCell.m in Sources */,
 				D6D73E2E2508829500A328B8 /* ScrollHeaderView.m in Sources */,
+				D6D73E8E2510C41C00A328B8 /* SheQuLunchViewController.m in Sources */,
 				D6D73E3C2508B7E700A328B8 /* AlertWKWebview.m in Sources */,
 				D6D73E012505D3E900A328B8 /* SVProgressAnimatedView.m in Sources */,
 				D6765C4C2502329600D8E469 /* NSObject+Model.m in Sources */,

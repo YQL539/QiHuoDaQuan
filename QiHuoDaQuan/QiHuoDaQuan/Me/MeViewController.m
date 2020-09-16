@@ -94,29 +94,26 @@
             return cell;
             break;
         }
+//        case 1:{
+//
+//            break;
+//        }
         case 1:{
             MeTableViewCell *cell = [MeTableViewCell cellWithtableView:tableView];
-            cell.title = @"我的自选";
-            cell.iconImage = @"self";
-            return cell;
-            break;
-        }
-        case 2:{
-            MeTableViewCell *cell = [MeTableViewCell cellWithtableView:tableView];
-            cell.title = @"我的消息";
-            cell.iconImage = @"message";
+            cell.title = @"我的收藏";
+            cell.iconImage = @"Shoucangme";
             return cell;
             break;
         }
             
-        case 3:{
+        case 2:{
             MeTableViewCell *cell = [MeTableViewCell cellWithtableView:tableView];
             cell.title = @"清理缓存";
             cell.iconImage = @"clear";
             return cell;
             break;
         }
-        case 4:{
+        case 3:{
             MeTableViewCell *cell = [MeTableViewCell cellWithtableView:tableView];
             NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
             NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
@@ -127,7 +124,7 @@
             return cell;
             break;
         }
-        case 5:{
+        case 4:{
             MeTableViewCell *cell = [MeTableViewCell cellWithtableView:tableView];
             cell.title = @"隐私协议";
             cell.iconImage = @"pravate";
@@ -135,7 +132,7 @@
             return cell;
             break;
         }
-        case 6:{
+        case 5:{
             MeTableViewCell *cell = [MeTableViewCell cellWithtableView:tableView];
             cell.title = @"关于";
             cell.iconImage = @"about";
@@ -169,7 +166,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 6;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -194,16 +191,30 @@
             }
             break;
         }
+//        case 1:{
+//            //自选
+//            self.tabBarController.selectedIndex = 1;
+//        }
         case 1:{
-            //自选
-            self.tabBarController.selectedIndex = 1;
-        }
-        case 2:{
             //我的收藏
+            NSString *isLogin = [[userModel shareDataModel] getLoginAccout];
+            if (isLogin.length > 0) {
+                NSString *cachePath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
+                NSString *filePath = [cachePath stringByAppendingPathComponent:kCollectArticle];
+                NSMutableArray *dataArray =  [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+                MyViewController *myCollectVC = [[MyViewController alloc] init];
+                myCollectVC.discussArray = dataArray;
+            myCollectVC.type = @"收藏";
+                [self.navigationController pushViewController:myCollectVC animated:YES];
+            }else {
+                LoginViewController *loginVC = [LoginViewController new];
+                loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
+                [self presentViewController:loginVC animated:YES completion:nil];
+            }
            
             break;
         }
-        case 3:{
+        case 2:{
             //清楚缓存
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showHubMessage:@"正在删除缓存文件" delay:3];
@@ -215,17 +226,17 @@
             });
             break;
         }
-        case 4:{
+        case 3:{
             //当前版本
             break;
         }
-        case 5:{
+        case 4:{
             //关于
             SFSafariViewController *sfVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"https://www.showdoc.cc/p/f7450f4e2af2d38a2e4545e769f0681e"]];
             [self.navigationController presentViewController:sfVC animated:YES completion:nil];
             break;
         }
-            case 6:{
+            case 5:{
                 //关于
                 SFSafariViewController *sfVC = [[SFSafariViewController alloc]initWithURL:[NSURL URLWithString:@"https://www.showdoc.cc/p/f7450f4e2af2d38a2e4545e769f0681e"]];
                 [self.navigationController presentViewController:sfVC animated:YES completion:nil];

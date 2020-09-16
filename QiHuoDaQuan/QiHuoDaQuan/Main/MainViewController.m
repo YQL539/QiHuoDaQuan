@@ -16,6 +16,8 @@
 #import "LoginViewController.h"
 #import "LineViewController.h"
 #import "DateSignViewController.h"
+#import "NewsViewController.h"
+#import "BooksViewController.h"
 @interface MainViewController ()<DCCycleScrollViewDelegate,UITableViewDelegate,UITableViewDataSource,ScrollHeaderViewDelegate>
 @property (nonatomic,strong)DCCycleScrollView *banner;
 @property (nonatomic,strong) UIPageControl *pageControl;
@@ -40,7 +42,7 @@
     [self setBroastView];
     [self setBtnView];
     [self setTableView];
-    [self setAlertWKWebview];
+//    [self setAlertWKWebview];
 }
 
 -(void)setScrollView{
@@ -63,20 +65,19 @@
     CGFloat iWidth = (SCREENWIDTH - iMargin * 4)/3;
     [self.btnBgView addSubview:[self getImageButtonWithTitle:@"每日签到" image:@"sign" tag:1000 frame:CGRectMake(iMargin, 5, iWidth, 60)]];
     [self.btnBgView addSubview:[self getImageButtonWithTitle:@"极速注册" image:@"regist" tag:1001 frame:CGRectMake(iWidth + iMargin*2, 5, iWidth, 60)]];
-    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"快速入门" image:@"time" tag:1002 frame:CGRectMake((iWidth + iMargin)*2 + iMargin, 5, iWidth, 60)]];
-    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"知识进阶" image:@"dati" tag:1003 frame:CGRectMake(iMargin, 70, iWidth, 60)]];
-    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"热门讨论" image:@"discuss" tag:1003 frame:CGRectMake((iWidth + iMargin) + iMargin, 70, iWidth, 60)]];
-    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"小时快讯" image:@"news" tag:1004 frame:CGRectMake((iWidth + iMargin)*2 + iMargin, 70, iWidth, 60)]];
+    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"入门推荐" image:@"bookHome" tag:1002 frame:CGRectMake((iWidth + iMargin)*2 + iMargin, 5, iWidth, 60)]];
+    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"期货大盘" image:@"dati" tag:1003 frame:CGRectMake(iMargin, 70, iWidth, 60)]];
+    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"热门讨论" image:@"discuss" tag:1004 frame:CGRectMake((iWidth + iMargin) + iMargin, 70, iWidth, 60)]];
+    [self.btnBgView addSubview:[self getImageButtonWithTitle:@"小时快讯" image:@"news" tag:1005 frame:CGRectMake((iWidth + iMargin)*2 + iMargin, 70, iWidth, 60)]];
 }
 
 
 - (NSMutableArray *)dataArray {
     if (!_dataArray) {
         _dataArray = [NSMutableArray array];
-        [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"shanghai"]];
-        [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"zhengzhou"]];
-        [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"dalian"]];
-        [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"waipan"]];
+        [_dataArray addObject:[data getDataWithRootTitle:@"HangQing" subTitle:@"NongChanPin"]];
+        [_dataArray addObject:[data getDataWithRootTitle:@"HangQing" subTitle:@"yuanyou"]];
+        [_dataArray addObject:[data getDataWithRootTitle:@"HangQing" subTitle:@"guijinshu"]];
     }
     return _dataArray;
 }
@@ -122,7 +123,7 @@
 
 -(void)setTableView{
     self.seleIndex = 0;
-    self.scrollHeaderView = [[ScrollHeaderView alloc] initScrollViewWithTitle:@[@"上海期交所",@"郑州期交所",@"大连期交所",@"外盘期交所"] andRect:CGRectMake(0, CGRectGetMaxY(self.btnBgView.frame), SCREENWIDTH, 40)];
+    self.scrollHeaderView = [[ScrollHeaderView alloc] initScrollViewWithTitle:@[@"农产品",@"原油",@"贵金属"] andRect:CGRectMake(0, CGRectGetMaxY(self.btnBgView.frame) + 8, SCREENWIDTH, 40 - 8)];
     self.scrollHeaderView.delegate = self;
     [self.scrollBgView addSubview:self.scrollHeaderView];
     
@@ -206,16 +207,12 @@
             break;
         }
         case 1002:{
-            //            NSArray *jsonArray = [self getQuestionModelArrayFromJsonName:@"dati.json"];
-            //            DatiViewController *dati = [[DatiViewController alloc] init];
-            //            dati.totalNum = jsonArray.count;
-            //            dati.questionModelArray = jsonArray;
-            //            dati.vcTitle = button.currentTitle;
-            //            [self.navigationController pushViewController:dati animated:YES];
+            BooksViewController *booksVC = [[BooksViewController alloc]init];
+            [self.navigationController pushViewController:booksVC animated:YES];
             break;
         }
         case 1003:{
-            
+            [self.tabBarController setSelectedIndex:1];
             break;
         }
         case 1004:{
@@ -223,8 +220,8 @@
             break;
         }
         case 1005:{
-            //                NewsViewController *newVC = [[NewsViewController alloc]init];
-            //                [self.navigationController pushViewController:newVC animated:YES];
+            NewsViewController *newVC = [[NewsViewController alloc]init];
+            [self.navigationController pushViewController:newVC animated:YES];
             break;
         }
         default:{
@@ -243,24 +240,11 @@
     button.titleLabel.font = [UIFont systemFontOfSize:12];
     [button setImage:[UIImage imageNamed:imgName] forState:UIControlStateNormal];
     button.tag = iTag;
-    button.layer.borderColor = [UIColor blackColor].CGColor;
-    button.layer.borderWidth = .5f;
+//    button.layer.borderColor = [UIColor blackColor].CGColor;
+//    button.layer.borderWidth = .5f;
     [button addTarget:self action:@selector(buttonDidClicked:) forControlEvents:UIControlEventTouchUpInside];
     return button;
 }
-
-//-(NSArray *)getQuestionModelArrayFromJsonName:(NSString *)jsonName{
-//    NSString *path = [[NSBundle mainBundle] pathForResource:jsonName ofType:nil];
-//    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableLeaves error:nil];
-//    NSArray *dataArray = dic[@"data"];
-//    NSMutableArray *modelArray = [NSMutableArray array];
-//    for (int i = 0; i<dataArray.count; i++) {
-//        NSDictionary *modeleDic = dataArray[i];
-//        datiModel *model = [datiModel ModelWithStringDict:modeleDic];
-//        [modelArray addObject:model];
-//    }
-//    return modelArray;
-//}
 
 #pragma mark cycleScrollView delegate
 -(void)cycleScrollView:(DCCycleScrollView *)cycleScrollView currentPageIndex:(NSInteger)index

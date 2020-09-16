@@ -9,11 +9,14 @@
 #import "TopTableViewCell.h"
 @interface TopTableViewCell ()
 @property (nonatomic, strong) UILabel *titleLabel;
-@property (nonatomic, strong) UITextField *detailLabel;
 @property (nonatomic, strong) UIView *line;
 @property (nonatomic, assign) CGFloat iIconWidth;
-@property (nonatomic, strong) UIImageView *rightView;
-
+@property (nonatomic, strong) UILabel *fsLabel;
+@property (nonatomic, strong) UILabel *gzLabel;
+@property (nonatomic, strong) UILabel *dtLabel;
+@property (nonatomic, strong) UILabel *fenSiLabel;
+@property (nonatomic, strong) UILabel *guanZhuLabel;
+@property (nonatomic, strong) UILabel *dongTaiLabel;
 @end
 @implementation TopTableViewCell
 
@@ -49,7 +52,7 @@
         self.iIconWidth = GetWidth(60.f);
     }
     UIImageView *back = [[UIImageView alloc] init];
-    back.backgroundColor = MAINCOLOR;
+    back.image = [UIImage imageNamed:@"headBg"];
     self.backgroundView = back;
     
     self.iconView = [[UIImageView alloc] init];
@@ -63,6 +66,15 @@
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.contentView addSubview:self.titleLabel];
 
+    self.gzLabel = [self getLabelWithTitle:@"点赞"];
+    [self.contentView addSubview:_gzLabel];
+    self.dtLabel = [self getLabelWithTitle:@"动态"];
+    [self.contentView addSubview:self.dtLabel];
+    self.guanZhuLabel = [self getLabelWithTitle:@"0"];
+    [self.contentView addSubview:self.guanZhuLabel];
+    self.dongTaiLabel = [self getLabelWithTitle:@"0"];
+    [self.contentView addSubview:self.dongTaiLabel];
+    
     self.line = [[UIView alloc] init];
     self.line.backgroundColor = [UIColor grayColor];
     [self.contentView addSubview:self.line];
@@ -70,14 +82,19 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.iconView.frame = CGRectMake((self.size.width - self.iIconWidth)/2, (self.height - _iIconWidth)/2.f, self.iIconWidth, self.iIconWidth);
+    CGFloat ImarginX = GetWidth(5);
+    self.iconView.frame = CGRectMake((SCREENWIDTH - self.iIconWidth)/2, (self.height - _iIconWidth)/2.f - 30, self.iIconWidth, self.iIconWidth);
     if (IS_IPHONE_X || IS_IPHONE_Xr || IS_IPHONE_Xs || IS_IPHONE_Xs_Max) {
         //X上部分去掉比较好看
-        self.iconView.centerY = (self.height - STATUS_BAR_HEIGHT)/2 + STATUS_BAR_HEIGHT;
+        self.iconView.centerY = (self.height - STATUS_BAR_HEIGHT)/2 + STATUS_BAR_HEIGHT - 25;
     }else{
-        self.iconView.centerY = (self.height)/2;
+        self.iconView.centerY = (self.height)/2 - 25;
     }
-    self.titleLabel.frame = CGRectMake(0, CGRectGetMaxY(_iconView.frame), self.width, 30);
+    self.titleLabel.frame = CGRectMake(ImarginX, CGRectGetMaxY(_iconView.frame), self.width, 20);
+    self.gzLabel.frame = CGRectMake(ImarginX, CGRectGetMaxY(self.titleLabel.frame), (SCREENWIDTH - ImarginX*3)/2, 20);
+    self.guanZhuLabel.frame = CGRectMake(ImarginX, CGRectGetMaxY(self.gzLabel.frame), (SCREENWIDTH - ImarginX*3)/2, 20);
+    self.dtLabel.frame = CGRectMake(ImarginX + CGRectGetMaxX(self.gzLabel.frame), CGRectGetMaxY(self.titleLabel.frame), (SCREENWIDTH - ImarginX*3)/2, 20);
+    self.dongTaiLabel.frame = CGRectMake(ImarginX + CGRectGetMaxX(self.gzLabel.frame), CGRectGetMaxY(self.dtLabel.frame), (SCREENWIDTH - ImarginX*3)/2, 20);
     self.line.frame = CGRectMake(0, self.height - 1.f, self.width, 1.f);
 }
 
@@ -87,7 +104,14 @@
 }
 
 
-
+-(UILabel *)getLabelWithTitle:(NSString *)title{
+    UILabel *label = [[UILabel alloc]init];
+    label.text = title;
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont systemFontOfSize:14];
+    label.textColor = [UIColor whiteColor];
+    return label;
+}
 
 
 @end

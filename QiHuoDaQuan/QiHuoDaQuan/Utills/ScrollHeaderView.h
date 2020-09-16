@@ -16,9 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 @interface ScrollHeaderView : UIView
+@property (strong, nonatomic) UIView *bgView;
+@property (strong, nonatomic) UIView *colorView;
+@property (strong, nonatomic) UIButton *lastButton;
+@property (assign, nonatomic) id<ScrollHeaderViewDelegate> delegate;
+
 - (instancetype)initScrollViewWithTitle:(NSArray *)titleArray andRect:(CGRect)rect;
 
-@property (assign, nonatomic) id<ScrollHeaderViewDelegate> delegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

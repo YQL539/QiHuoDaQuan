@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *detailLabel;
+@property (nonatomic, strong) UILabel *authorLabel;
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UIView *line;
 //填充cell
