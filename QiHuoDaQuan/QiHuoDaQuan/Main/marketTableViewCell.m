@@ -37,7 +37,7 @@
 - (void)initViews {
     self.nameLabel = [[UILabel alloc] init];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
-    self.nameLabel.font = [UIFont systemFontOfSize:15];
+    self.nameLabel.font = [UIFont systemFontOfSize:14];
     
     self.priceNowLabel = [[UILabel alloc] init];
     self.priceNowLabel.textAlignment = NSTextAlignmentCenter;
@@ -64,9 +64,9 @@
     self.nameLabel.text = model.name;
     self.priceNowLabel.text = model.buyPrice;
     if ([model.zhangFu containsString:@"-"]) {
-        self.priceChangeLabel.backgroundColor = [UIColor greenColor];
+        self.priceChangeLabel.textColor = RGB(73.f, 128.f, 31.f);
     }else{
-        self.priceChangeLabel.backgroundColor = [UIColor redColor];
+        self.priceChangeLabel.textColor = [UIColor redColor];
     }
     self.priceChangeLabel.text = model.zhangFu;
     
@@ -84,11 +84,11 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat iMarginX = 15;
-    CGFloat iW = (self.frame.size.width - iMarginX * 5)/4;
-    self.nameLabel.frame = CGRectMake(iMarginX, 0, iW, self.frame.size.height);
-    self.priceNowLabel.frame = CGRectMake((iW + iMarginX)*1, 0, iW, self.height);
-    self.priceChangeLabel.frame = CGRectMake((iW + iMarginX)*2 + 10, 10, iW - 20, self.height - 20);
-    self.recumentLabel.frame = CGRectMake((iW + iMarginX)*3, 0, iW, self.height);
+    CGFloat iW = (self.frame.size.width)/4;
+    self.nameLabel.frame = CGRectMake(0, 0, iW + 30, self.frame.size.height);
+    self.priceNowLabel.frame = CGRectMake(CGRectGetMaxX(self.nameLabel.frame), 0, iW - 10, self.height);
+    self.priceChangeLabel.frame = CGRectMake(CGRectGetMaxX(self.priceNowLabel.frame), 10, iW - 10, self.height - 20);
+    self.recumentLabel.frame = CGRectMake(CGRectGetMaxX(self.priceChangeLabel.frame), 0, iW - 10, self.height);
 }
 
 

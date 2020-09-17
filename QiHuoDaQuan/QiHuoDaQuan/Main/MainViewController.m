@@ -124,7 +124,7 @@
 -(void)setTableView{
     self.seleIndex = 0;
     self.scrollHeaderView = [[ScrollHeaderView alloc] initScrollViewWithTitle:@[@"农产品",@"原油",@"贵金属"] andRect:CGRectMake(0, CGRectGetMaxY(self.btnBgView.frame) + 8, SCREENWIDTH, 40 - 8)];
-    self.scrollHeaderView.delegate = self;
+    self.scrollHeaderView.headDelegate = self;
     [self.scrollBgView addSubview:self.scrollHeaderView];
     
     self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollHeaderView.frame), SCREENWIDTH,  SCREENHEIGHT*1.2 - TAB_BAR_HEIGHT - 40 - 55 - 130 - 135) style:UITableViewStylePlain];
@@ -150,14 +150,14 @@
         return 30;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGFloat iWidth = (SCREENWIDTH - 15*5)/4;
+    CGFloat iWidth = (SCREENWIDTH)/4;
     CGFloat iHeight = 30;
     UIView *titlView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, iHeight)];
     titlView.backgroundColor = [UIColor whiteColor];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"名称" frame:CGRectMake(15, 0, iWidth, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"最新价格" frame:CGRectMake((iWidth + 15), 0, iWidth, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"涨幅" frame:CGRectMake((iWidth + 15) * 2, 0, iWidth, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"推荐指数" frame:CGRectMake((iWidth + 15) * 3, 0, iWidth, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"名称" frame:CGRectMake(0, 0, iWidth + 30, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"最新价格" frame:CGRectMake((iWidth) + 30, 0, iWidth-10, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"涨幅" frame:CGRectMake((iWidth) * 2 + 30 - 10, 0, iWidth - 10, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"推荐指数" frame:CGRectMake((iWidth) * 3 + 30 -10 -10, 0, iWidth -10, iHeight)]];
     return titlView;
 }
 

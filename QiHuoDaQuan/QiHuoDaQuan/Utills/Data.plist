@@ -721,6 +721,191 @@
 				<string>+20</string>
 			</dict>
 		</array>
+		<key>zhishu</key>
+		<array>
+			<dict>
+				<key>name</key>
+				<string>IC0</string>
+				<key>englishName</key>
+				<string>XAGUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>6353.6</string>
+				<key>buyPrice</key>
+				<string>6351.6</string>
+				<key>zhangFu</key>
+				<string>-0.03%</string>
+				<key>kuiSun</key>
+				<string>-2.2</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IC2009</string>
+				<key>englishName</key>
+				<string>XPDUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>6353.6</string>
+				<key>buyPrice</key>
+				<string>6350.6</string>
+				<key>zhangFu</key>
+				<string>-0.03%</string>
+				<key>kuiSun</key>
+				<string>-1.2</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IC2010</string>
+				<key>englishName</key>
+				<string>COPPER FUT_M</string>
+				<key>salePrice</key>
+				<string>6267.0</string>
+				<key>buyPrice</key>
+				<string>6262.0</string>
+				<key>zhangFu</key>
+				<string>-0.08%</string>
+				<key>kuiSun</key>
+				<string>-5</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IC2012</string>
+				<key>englishName</key>
+				<string>XRTUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>6090.0</string>
+				<key>buyPrice</key>
+				<string>6113.6</string>
+				<key>zhangFu</key>
+				<string>-0.29%</string>
+				<key>kuiSun</key>
+				<string>-18.0</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IC2103</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>5866.0</string>
+				<key>buyPrice</key>
+				<string>5889.0</string>
+				<key>zhangFu</key>
+				<string>-0.31%</string>
+				<key>kuiSun</key>
+				<string>-18.0</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IH0</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>3288.6</string>
+				<key>buyPrice</key>
+				<string>3276.6</string>
+				<key>zhangFu</key>
+				<string>-0.57%</string>
+				<key>kuiSun</key>
+				<string>-10.29</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IH2009</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>3288.6</string>
+				<key>buyPrice</key>
+				<string>3268.6</string>
+				<key>zhangFu</key>
+				<string>-0.64%</string>
+				<key>kuiSun</key>
+				<string>-21.2</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IH2010</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>3270.4</string>
+				<key>buyPrice</key>
+				<string>3264.4</string>
+				<key>zhangFu</key>
+				<string>-0.95%</string>
+				<key>kuiSun</key>
+				<string>-31.2</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IH2012</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>3270.4</string>
+				<key>buyPrice</key>
+				<string>3291.6</string>
+				<key>zhangFu</key>
+				<string>-0.45%</string>
+				<key>kuiSun</key>
+				<string>-23.2</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>IH2103</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>3209.4</string>
+				<key>buyPrice</key>
+				<string>3244.8</string>
+				<key>zhangFu</key>
+				<string>-1.07%</string>
+				<key>kuiSun</key>
+				<string>-34.6</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>期指0</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>4648.2</string>
+				<key>buyPrice</key>
+				<string>4677.6</string>
+				<key>zhangFu</key>
+				<string>-0.57%</string>
+				<key>kuiSun</key>
+				<string>-26.8</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>期指2009</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>4648.2</string>
+				<key>buyPrice</key>
+				<string>4615.8</string>
+				<key>zhangFu</key>
+				<string>-0.54%</string>
+				<key>kuiSun</key>
+				<string>-25.2</string>
+			</dict>
+			<dict>
+				<key>name</key>
+				<string>期指2012</string>
+				<key>englishName</key>
+				<string>XAUUSD FUT_M</string>
+				<key>salePrice</key>
+				<string>4551.0</string>
+				<key>buyPrice</key>
+				<string>4580.2</string>
+				<key>zhangFu</key>
+				<string>-0.62%</string>
+				<key>kuiSun</key>
+				<string>-28.2</string>
+			</dict>
+		</array>
 		<key>zhengzhou</key>
 		<array>
 			<dict>

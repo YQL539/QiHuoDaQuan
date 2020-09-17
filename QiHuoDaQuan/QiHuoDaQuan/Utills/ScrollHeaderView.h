@@ -15,11 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didSelectItemWithIndex:(NSInteger)index;
 
 @end
-@interface ScrollHeaderView : UIView
+@interface ScrollHeaderView : UIScrollView
 @property (strong, nonatomic) UIView *bgView;
 @property (strong, nonatomic) UIView *colorView;
 @property (strong, nonatomic) UIButton *lastButton;
-@property (assign, nonatomic) id<ScrollHeaderViewDelegate> delegate;
+@property (assign, nonatomic) id<ScrollHeaderViewDelegate> headDelegate;
 
 - (instancetype)initScrollViewWithTitle:(NSArray *)titleArray andRect:(CGRect)rect;
 

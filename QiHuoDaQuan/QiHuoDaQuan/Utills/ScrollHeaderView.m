@@ -14,11 +14,12 @@
 
 - (instancetype)initScrollViewWithTitle:(NSArray *)titleArray andRect:(CGRect)rect {
     if (self = [super initWithFrame:rect]) {
-        self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-        self.bgView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:self.bgView];
-        
-        CGFloat BW = rect.size.width/titleArray.count;
+//        self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
+//        self.bgView.backgroundColor = [UIColor whiteColor];
+//        [self addSubview:self.bgView];
+        self.showsHorizontalScrollIndicator = NO;
+        self.bounces = NO;
+        CGFloat BW = 120;
         
         
         for (int i = 0 ; i < titleArray.count; i ++) {
@@ -37,14 +38,16 @@
             }
             button.tag = 1000 + i;
             [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-            [self.bgView addSubview:button];
+            [self addSubview:button];
         }
-        
+        // 计算ScrollView的宽度，设置contentSize
+        CGFloat scrollWid = CGRectGetMaxX(self.subviews.lastObject.frame);
+        self.contentSize = CGSizeMake(scrollWid, rect.size.height);
         self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, rect.size.height - 2, BW, 2)];
         self.colorView.backgroundColor = [UIColor redColor];
         self.colorView.layer.cornerRadius = 5;
         self.colorView.layer.masksToBounds = YES;
-        [self.bgView addSubview:self.colorView];
+        [self addSubview:self.colorView];
         
     }
     return self;
@@ -58,8 +61,8 @@
             sender.selected = YES;
             self.lastButton.selected = NO;
             self.lastButton = sender;
-            if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectItemWithIndex:)]) {
-                [self.delegate didSelectItemWithIndex:sender.tag - 1000];
+            if (self.headDelegate && [self.headDelegate respondsToSelector:@selector(didSelectItemWithIndex:)]) {
+                [self.headDelegate didSelectItemWithIndex:sender.tag - 1000];
             }
         }];
     }

@@ -27,6 +27,7 @@
         [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"zhengzhou"]];
         [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"dalian"]];
         [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"waipan"]];
+        [_dataArray addObject:[data getDataWithRootTitle:@"shouye" subTitle:@"zhishu"]];
     }
     return _dataArray;
 }
@@ -41,8 +42,9 @@
     [self.view addSubview:search];
     search.placeholder = @"请输入要搜索的内容";
     
-    self.scrollHeaderView = [[ScrollHeaderView alloc] initScrollViewWithTitle:@[@"上海期交所",@"郑州期交所",@"大连期交所",@"外盘期交所"] andRect:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 50, SCREENWIDTH, 40)];
-    self.scrollHeaderView.delegate = self;
+    NSArray *titleArray = @[@"上海期货交易所",@"郑州期货交易所",@"大连期货交易所",@"外盘期货交易所",@"指数期货"];
+    self.scrollHeaderView = [[ScrollHeaderView alloc] initScrollViewWithTitle:titleArray andRect:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 50, SCREENWIDTH, 40)];
+    self.scrollHeaderView.headDelegate = self;
     [self.view addSubview:self.scrollHeaderView];
     
     self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollHeaderView.frame), SCREENWIDTH,  SCREENHEIGHT - TAB_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50) style:UITableViewStylePlain];
@@ -68,14 +70,14 @@
         return 30;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    CGFloat iWidth = (SCREENWIDTH - 15*5)/4;
+    CGFloat iWidth = (SCREENWIDTH)/4;
     CGFloat iHeight = 30;
     UIView *titlView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, iHeight)];
     titlView.backgroundColor = [UIColor whiteColor];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"名称" frame:CGRectMake(15, 0, iWidth, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"最新价格" frame:CGRectMake((iWidth + 15), 0, iWidth, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"涨幅" frame:CGRectMake((iWidth + 15) * 2, 0, iWidth, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"推荐指数" frame:CGRectMake((iWidth + 15) * 3, 0, iWidth, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"名称" frame:CGRectMake(0, 0, iWidth + 30, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"最新价格" frame:CGRectMake((iWidth) + 30, 0, iWidth-10, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"涨幅" frame:CGRectMake((iWidth) * 2 + 30 - 10, 0, iWidth - 10, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"推荐指数" frame:CGRectMake((iWidth) * 3 + 30 -10 -10, 0, iWidth -10, iHeight)]];
     return titlView;
 }
 

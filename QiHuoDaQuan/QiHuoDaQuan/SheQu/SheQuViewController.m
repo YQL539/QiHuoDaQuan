@@ -58,7 +58,7 @@
 - (ScrollHeaderView *)sheQuHeader {
     if (!_sheQuHeader) {
         _sheQuHeader = [[ScrollHeaderView alloc] initScrollViewWithTitle:@[@"最新发布",@"热门讨论"] andRect:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREENWIDTH, 40)];
-        _sheQuHeader.delegate = self;
+        _sheQuHeader.headDelegate = self;
     }
     return _sheQuHeader;
 }
