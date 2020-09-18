@@ -15,8 +15,9 @@
 #import "SheQuReplyTableViewCell.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SheQuDetailViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,SheQuDetailUITableViewCellDelegate>
+@interface SheQuDetailViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,SheQuDetailUITableViewCellDelegate,SheQuReplyCellDelegate>
 @property (nonatomic,strong) UITableView *detailView;
+@property (nonatomic, strong) UIButton *lunchBtn;
 @property (nonatomic,strong) SheQuDetailModel *detailModel;
 @property (nonatomic,strong) NSMutableArray *detailArray;
 @property(nonatomic,copy)NSString * qid;

@@ -42,7 +42,7 @@
     [self setBroastView];
     [self setBtnView];
     [self setTableView];
-//    [self setAlertWKWebview];
+    [self setAlertWKWebview];
 }
 
 -(void)setScrollView{

@@ -29,6 +29,7 @@
     self.authorLabel.text = model.nickName;
     self.timeLabel.text = model.date;
     self.lookLabel.text = model.loolNum;
+    self.replyLabel.text = model.reply;
     [self.headView  sd_setImageWithURL:[NSURL URLWithString:model.headImage] placeholderImage:[UIImage imageNamed:@"Default"]];
     
 }
@@ -52,6 +53,10 @@
         [self.bgView addSubview:self.lookView];
         self.lookView.image = [UIImage imageNamed:@"look"];
         
+        self.replyView = [[UIImageView alloc]init];
+        [self.bgView addSubview:self.replyView];
+        self.replyView.image = [UIImage imageNamed:@"message"];
+        
         self.authorLabel = [[UILabel alloc]init];
         self.authorLabel.font = [UIFont systemFontOfSize:14];
         self.authorLabel.textColor = [UIColor blackColor];
@@ -66,6 +71,11 @@
         self.lookLabel.font = [UIFont systemFontOfSize:12];
         self.lookLabel.textColor = [UIColor grayColor];
         [self.bgView addSubview:self.lookLabel];
+        
+        self.replyLabel = [[UILabel alloc]init];
+        self.replyLabel.font = [UIFont systemFontOfSize:12];
+        self.replyLabel.textColor = [UIColor grayColor];
+        [self.bgView addSubview:self.replyLabel];
         
         self.titleLabel = [[UILabel alloc]init];
         self.titleLabel.textColor = [UIColor blackColor];
@@ -87,8 +97,10 @@
     self.headView.frame = CGRectMake(iMarginX, iMarginY, iIconWidth, iIconWidth);
     self.authorLabel.frame = CGRectMake(CGRectGetMaxX(self.headView.frame) + iMarginX, iMarginY, SCREENWIDTH - iMarginX*3 - iIconWidth, GetWidth(20));
     self.timeLabel.frame = CGRectMake(CGRectGetMaxX(self.headView.frame) + iMarginX, CGRectGetMaxY(self.authorLabel.frame),GetWidth(100), GetWidth(20));
-    self.lookView.frame = CGRectMake(SCREENWIDTH - iMarginX - 2 - 100 - GetWidth(20.f), CGRectGetMinY(self.timeLabel.frame) + GetWidth(4.f), GetWidth(20.f), GetWidth(12.f));
-    self.lookLabel.frame = CGRectMake(CGRectGetMaxX(self.lookView.frame) + 2, CGRectGetMinY(self.timeLabel.frame), 100, GetWidth(20));
+    self.lookView.frame = CGRectMake(CGRectGetMaxX(self.timeLabel.frame), CGRectGetMinY(self.timeLabel.frame) + GetWidth(2.f), GetWidth(18.f), GetWidth(18.f));
+    self.lookLabel.frame = CGRectMake(CGRectGetMaxX(self.lookView.frame) + 2, CGRectGetMinY(self.timeLabel.frame), 60, GetWidth(20));
+    self.replyView.frame = CGRectMake(CGRectGetMaxX(self.lookLabel.frame), CGRectGetMinY(self.timeLabel.frame) + GetWidth(2.f), GetWidth(18.f), GetWidth(18.f));
+       self.replyLabel.frame = CGRectMake(CGRectGetMaxX(self.replyView.frame) + 2, CGRectGetMinY(self.timeLabel.frame), 60, GetWidth(20));
     self.titleLabel.frame = CGRectMake(iIconWidth + iMarginX*2, CGRectGetMaxY(self.timeLabel.frame), SCREENWIDTH - iMarginX*2 - iIconWidth, iTitleHeight);
 }
 

@@ -24,6 +24,7 @@
             }];
         }
     }else{
+        self.title = @"我的收藏";
         [self.view addSubview:self.discussTableView];
     }
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C311512E666A404E71C5153A /* libPods-QiHuoDaQuan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4E5E85A73EDBAD47053406E /* libPods-QiHuoDaQuan.a */; };
+		D66B254F2514AEB900DF2B94 /* BannerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D66B254D2514AEB900DF2B94 /* BannerTableViewCell.m */; };
+		D66B25502514AEB900DF2B94 /* BannerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D66B254E2514AEB900DF2B94 /* BannerTableViewCell.xib */; };
 		D6765C4C2502329600D8E469 /* NSObject+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = D6765C4B2502329600D8E469 /* NSObject+Model.m */; };
 		D68551172502240900C25FFF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D68551162502240900C25FFF /* AppDelegate.m */; };
 		D685511D2502240900C25FFF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D685511C2502240900C25FFF /* ViewController.m */; };
@@ -116,6 +118,9 @@
 		7D4EA1B04953BAAE9DD15785 /* Pods-QiHuoDaQuan.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiHuoDaQuan.release.xcconfig"; path = "Target Support Files/Pods-QiHuoDaQuan/Pods-QiHuoDaQuan.release.xcconfig"; sourceTree = "<group>"; };
 		A9C18AD407CEFCA08A0390A9 /* Pods-QiHuoDaQuan.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QiHuoDaQuan.debug.xcconfig"; path = "Target Support Files/Pods-QiHuoDaQuan/Pods-QiHuoDaQuan.debug.xcconfig"; sourceTree = "<group>"; };
 		C4E5E85A73EDBAD47053406E /* libPods-QiHuoDaQuan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QiHuoDaQuan.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D66B254C2514AEB900DF2B94 /* BannerTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BannerTableViewCell.h; sourceTree = "<group>"; };
+		D66B254D2514AEB900DF2B94 /* BannerTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BannerTableViewCell.m; sourceTree = "<group>"; };
+		D66B254E2514AEB900DF2B94 /* BannerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerTableViewCell.xib; sourceTree = "<group>"; };
 		D6765C4A2502329600D8E469 /* NSObject+Model.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+Model.h"; sourceTree = "<group>"; };
 		D6765C4B2502329600D8E469 /* NSObject+Model.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Model.m"; sourceTree = "<group>"; };
 		D6765C4D250232F500D8E469 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
@@ -384,6 +389,9 @@
 			children = (
 				D6D73DDB2505D1DA00A328B8 /* SheQuViewController.h */,
 				D6D73DDC2505D1DA00A328B8 /* SheQuViewController.m */,
+				D66B254C2514AEB900DF2B94 /* BannerTableViewCell.h */,
+				D66B254D2514AEB900DF2B94 /* BannerTableViewCell.m */,
+				D66B254E2514AEB900DF2B94 /* BannerTableViewCell.xib */,
 				D6D73E9A2510C70600A328B8 /* SheQuDetailViewController.h */,
 				D6D73E9B2510C70600A328B8 /* SheQuDetailViewController.m */,
 				D6D73E9C2510C70600A328B8 /* SheQuDetailViewController.xib */,
@@ -755,6 +763,7 @@
 				D6D73E942510C4A700A328B8 /* SheQuTableViewCell.xib in Resources */,
 				D6D73E5C250B61ED00A328B8 /* 2.png in Resources */,
 				D6D73E62250B61ED00A328B8 /* 1.png in Resources */,
+				D66B25502514AEB900DF2B94 /* BannerTableViewCell.xib in Resources */,
 				D6D73E5E250B61ED00A328B8 /* 7.png in Resources */,
 				D6D73E0E25062FB900A328B8 /* TopTableViewCell.xib in Resources */,
 				D6D73E042505D3E900A328B8 /* SVProgressHUD.bundle in Resources */,
@@ -879,6 +888,7 @@
 				D6D73DCD2505056D00A328B8 /* NSString+HTML.m in Sources */,
 				D6D73E242506379000A328B8 /* MoreTableViewCell.m in Sources */,
 				D6D73E0825062FA600A328B8 /* MeTableViewCell.m in Sources */,
+				D66B254F2514AEB900DF2B94 /* BannerTableViewCell.m in Sources */,
 				D6D73E262506379000A328B8 /* LPButton.m in Sources */,
 				D6D73DFC2505D3E900A328B8 /* LLPagerController.m in Sources */,
 				D6D73E282506379000A328B8 /* BroadcastView.m in Sources */,

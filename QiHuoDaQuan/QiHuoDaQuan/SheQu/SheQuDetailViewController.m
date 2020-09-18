@@ -18,13 +18,29 @@
     [super viewDidLoad];
     self.title = @"帖子详情";
     self.detailArray = [NSMutableArray array];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"pinglun"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]style:UIBarButtonItemStylePlain target:self action:@selector(setPinglun)];
-    self.detailView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREENWIDTH, SCREENHEIGHT - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+    [self setSubviews];
+}
+
+-(void)setSubviews{
+    self.detailView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREENWIDTH, SCREENHEIGHT - NAVIGATION_BAR_HEIGHT - 50) style:UITableViewStylePlain];
     _detailView.backgroundColor = [UIColor whiteColor];
     _detailView.delegate = self;
     _detailView.dataSource = self;
     [self.view addSubview:self.detailView];
+    
+    self.lunchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.lunchBtn.frame = CGRectMake(15, CGRectGetMaxY(self.detailView.frame) + 5, SCREENWIDTH - 30, 40);
+    [self.lunchBtn setTitle:@"发表评论" forState:UIControlStateNormal];
+    [self.lunchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.lunchBtn.layer.cornerRadius = 5;
+    self.lunchBtn.clipsToBounds= YES;
+    self.lunchBtn.backgroundColor = MAINCOLOR;
+    [self.lunchBtn addTarget:self action:@selector(setPinglun) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.lunchBtn];
+    
     [self fetchData];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"shoucang"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]style:UIBarButtonItemStylePlain target:self action:@selector(SheQuZanSCBtnDidClicked:)];
 }
 
 -(void)setPinglun{
@@ -96,6 +112,7 @@
     if (indexPath.section == 1) {
         SheQuReplyModel *model = self.detailModel.answers[indexPath.row];
         SheQuReplyTableViewCell *cell = [SheQuReplyTableViewCell initReplyCellWithtableView:tableView];
+        cell.replyDelegate = self;
         [cell showDataWithModel:model];
         return cell;
     }
@@ -118,18 +135,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否举报该评论？" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self SheQuZanJBBtnDidClicked];
-            }];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
-            }];
-            [alertController addAction:alertAction];
-            [alertController addAction:cancelAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-        });
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否举报该评论？" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                [self SheQuZanJBBtnDidClicked];
+//            }];
+//            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//
+//            }];
+//            [alertController addAction:alertAction];
+//            [alertController addAction:cancelAction];
+//            [self presentViewController:alertController animated:YES completion:nil];
+//        });
     }
 }
 
@@ -203,7 +220,6 @@
 }
 
 -(void)SheQuZanBtnDidClicked:(UIButton *)sender{
-    NSLog(@"zanBtnDidClicked");
     NSString *isLogin = [[userModel shareDataModel] getLoginAccout];
     if (isLogin.length > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -219,7 +235,6 @@
 }
 
 -(void)SheQuZanSCBtnDidClicked:(UIButton *)sender{
-    //    NSLog(@"shouCangBtnDidClicked");
     NSString *isLogin = [[userModel shareDataModel] getLoginAccout];
     if (isLogin.length > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -236,7 +251,6 @@
 }
 
 -(void)SheQuZanPBBtnDidClicked:(UIButton *)sender{
-    NSLog(@"pingBiBtnDidClicked");
     NSString *isLogin = [[userModel shareDataModel] getLoginAccout];
     if (isLogin.length > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -255,8 +269,22 @@
     
 }
 
+-(void)SheQuReplyJBBtnDidClicked:(UIButton *)sender{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否举报该评论？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self SheQuZanJBBtnDidClicked];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+        }];
+        [alertController addAction:alertAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    });
+}
+
 -(void)SheQuZanJBBtnDidClicked{
-//    NSLog(@"juBaoBtnDidClicked");
     NSString *isLogin = [[userModel shareDataModel] getLoginAccout];
        if (isLogin.length > 0) {
             SheQuLunchViewController *lunchVC = [[SheQuLunchViewController alloc]init];

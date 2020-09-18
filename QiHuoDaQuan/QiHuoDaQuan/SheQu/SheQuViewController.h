@@ -12,11 +12,15 @@
 #import "SheQuLunchViewController.h"
 #import "SheQuModel.h"
 #import "LoginViewController.h"
+#import "DCCycleScrollView.h"
+
 #import "SheQuDetailViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SheQuViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ScrollHeaderViewDelegate>
+@interface SheQuViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ScrollHeaderViewDelegate,DCCycleScrollViewDelegate>
 @property (strong, nonatomic) NSMutableArray *sheQuArray;
+@property (nonatomic,strong)DCCycleScrollView *banner;
+@property (nonatomic,strong) UIPageControl *pageControl;
 @property (strong, nonatomic) NSMutableArray *topArray;
 @property (strong, nonatomic) ScrollHeaderView *sheQuHeader;
 @property (strong, nonatomic) UITableView *sheQuTableView;

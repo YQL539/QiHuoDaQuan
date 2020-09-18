@@ -204,7 +204,7 @@
                 NSMutableArray *dataArray =  [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
                 MyViewController *myCollectVC = [[MyViewController alloc] init];
                 myCollectVC.discussArray = dataArray;
-            myCollectVC.type = @"收藏";
+                myCollectVC.type = @"收藏";
                 [self.navigationController pushViewController:myCollectVC animated:YES];
             }else {
                 LoginViewController *loginVC = [LoginViewController new];

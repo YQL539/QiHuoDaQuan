@@ -19,15 +19,41 @@
     self.sheQuArray = [NSMutableArray array];
     self.topArray = [NSMutableArray array];
     self.seleIndex = 0;
+    [self setSubviews];
+}
+
+-(void)setSubviews{
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"pinglun"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]style:UIBarButtonItemStylePlain target:self action:@selector(pushToWriteVC)];
     [self.view addSubview:self.sheQuHeader];
     [self.view addSubview:self.sheQuTableView];
-     __block typeof(self)weakSelf = self;
+    __block typeof(self)weakSelf = self;
     _sheQuTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     self.sheQuTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
     [self loadNewData];
+    [self setBannerView];
+}
+
+-(void)setBannerView{
+    NSArray *imageArray = @[
+    @"banner11.jpeg",
+    @"banner22.jpeg",
+    @"banner33.jpeg"
+    ];
+    
+    self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 5, self.view.frame.size.width, 135) shouldInfiniteLoop:YES imageGroups:imageArray];
+    _banner.autoScrollTimeInterval = 3;
+    _banner.autoScroll = YES;
+    _banner.isZoom = YES;
+    _banner.delegate = self;
+    _banner.imgCornerRadius = 10;
+    _banner.itemWidth = self.view.frame.size.width - 100;
+    
+    self.pageControl.frame = CGRectMake(0, 115, self.view.frame.size.width, 10);
+    self.pageControl.numberOfPages = imageArray.count;
+    self.pageControl.currentPage = 0;
+    [self.banner addSubview:self.pageControl];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -82,10 +108,15 @@
 }
 #pragma mark ---- UITableViewDelegate,UITableViewDataSource
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
     if (section == 0) {
+        return 0;
+    }else if (section == 1) {
+        return 30;
+    }else if(section == 2){
         return 30;
     }else{
-        return 30;
+        return 0;
     }
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -95,9 +126,13 @@
     titlView.backgroundColor = RGB(241.0f, 241.0f, 241.0f);
     UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, iWidth, iHeight)];
     if (section == 0) {
+        nameLabel.text = @"";
+    }else if (section == 1) {
         nameLabel.text = @"置顶贴";
-    }else{
+    }else if (section == 2) {
         nameLabel.text = @"话题贴";
+    }else{
+        nameLabel.text = @"";
     }
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.textAlignment = NSTextAlignmentCenter;
@@ -107,14 +142,18 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
+        return 1;
+    }
+    
+    if (section == 1) {
         return self.topArray.count;
     }
-    if (section == 1) {
+    if (section == 2) {
         return self.sheQuArray.count;
     }
     return 0;
@@ -122,6 +161,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BannerCELL"];
+        if (cell == nil) {
+            cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BannerCELL"];
+            [cell addSubview:self.banner];
+        }
+        return cell;
+    }
+    
+    if (indexPath.section == 1) {
         if (self.sheQuArray.count > 0) {
             SheQuModel *model = self.topArray[indexPath.row];
             SheQuTableViewCell *cell = [SheQuTableViewCell initCellWithtableView:tableView];
@@ -130,7 +178,7 @@
         }
     }
     
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         if (self.sheQuArray.count > 0) {
             SheQuModel *model = self.sheQuArray[indexPath.row];
             SheQuTableViewCell *cell = [SheQuTableViewCell initCellWithtableView:tableView];
@@ -143,22 +191,31 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return GetWidth(100.f);
+    if (indexPath.section == 0) {
+        return 145;
+    }else{
+        return GetWidth(100.f);
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SheQuModel *model;
-    if (indexPath.section == 0) {
-        model = self.topArray[indexPath.row];
-    }
     if (indexPath.section == 1) {
+        model = self.topArray[indexPath.row];
+        SheQuDetailViewController *detail = [[SheQuDetailViewController alloc]init];
+        detail.qid = model.qi;
+        detail.model = model;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
+    if (indexPath.section == 2) {
         model = self.sheQuArray[indexPath.row];
+        SheQuDetailViewController *detail = [[SheQuDetailViewController alloc]init];
+        detail.qid = model.qi;
+        detail.model = model;
+        [self.navigationController pushViewController:detail animated:YES];
     }
     
-    SheQuDetailViewController *detail = [[SheQuDetailViewController alloc]init];
-    detail.qid = model.qi;
-    detail.model = model;
-    [self.navigationController pushViewController:detail animated:YES];
+    
 }
 
 #pragma mark --- HangQingHeaderDelegate

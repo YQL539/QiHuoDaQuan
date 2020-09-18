@@ -19,7 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UIImageView *lookView;
 @property (nonatomic, strong) UILabel *lookLabel;
-
+@property (nonatomic, strong) UIImageView *replyView;
+@property (nonatomic, strong) UILabel *replyLabel;
 +(instancetype)initCellWithtableView:(UITableView *)tableview;
 -(void)showDataWithModel:(SheQuModel *)model;
 @end

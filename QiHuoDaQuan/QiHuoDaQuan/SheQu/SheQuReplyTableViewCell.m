@@ -37,17 +37,17 @@
     [self.contentView addSubview:self.bgView];
     
     self.headView = [[UIImageView alloc]init];
-    [self.bgView addSubview:self.headView];
+    [self addSubview:self.headView];
     
     self.authorLabel = [[UILabel alloc]init];
     self.authorLabel.font = [UIFont systemFontOfSize:14];
     self.authorLabel.textColor = [UIColor blackColor];
-    [self.bgView addSubview:self.authorLabel];
+    [self addSubview:self.authorLabel];
     
     self.timeLabel = [[UILabel alloc]init];
     self.timeLabel.font = [UIFont systemFontOfSize:12];
     self.timeLabel.textColor = [UIColor grayColor];
-    [self.bgView addSubview:self.timeLabel];
+    [self addSubview:self.timeLabel];
     
     self.titleLabel = [[UILabel alloc]init];
     self.titleLabel.textColor = [UIColor blackColor];
@@ -55,7 +55,16 @@
     self.titleLabel.numberOfLines = 2;
     self.titleLabel.textColor = [UIColor blackColor];
     self.titleLabel.font = [UIFont systemFontOfSize:16];
-    [self.bgView addSubview:self.titleLabel];
+    [self addSubview:self.titleLabel];
+    
+    
+    self.juBaoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.juBaoBtn setImage:[UIImage imageNamed:@"jubao"] forState:UIControlStateNormal];
+    self.juBaoBtn.backgroundColor = [UIColor whiteColor];
+    self.juBaoBtn.clipsToBounds = YES;
+    self.juBaoBtn.layer.cornerRadius = 5;
+     [self.juBaoBtn addTarget:self action:@selector(juBaoButtonDidClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.juBaoBtn];
 }
 
 //重写布局
@@ -69,6 +78,12 @@
     return self;
 }
 
+-(void)juBaoButtonDidClicked:(UIButton *)sender{
+    if (self.replyDelegate && [self.replyDelegate respondsToSelector:@selector(SheQuReplyJBBtnDidClicked:)]) {
+        [self.replyDelegate SheQuReplyJBBtnDidClicked:sender];
+    }
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGFloat iMarginX = GetWidth(15.f);
@@ -76,8 +91,9 @@
     CGFloat iIconWidth = GetWidth(40.f);
     CGFloat iTitleHeight  =  [self getSizeWithText:self.titleLabel.text font:[UIFont systemFontOfSize:16] maxWidth:(SCREENWIDTH - iMarginX*2)].height;
     self.headView.frame = CGRectMake(iMarginX, iMarginY, iIconWidth, iIconWidth);
-    self.authorLabel.frame = CGRectMake(CGRectGetMaxX(self.headView.frame) + iMarginX, iMarginY, SCREENWIDTH - iMarginX*2 - iIconWidth, iIconWidth);
-    self.titleLabel.frame = CGRectMake(iMarginX, CGRectGetMaxY(self.headView.frame), SCREENWIDTH - iMarginX*2, iTitleHeight);
+    self.authorLabel.frame = CGRectMake(CGRectGetMaxX(self.headView.frame) + iMarginX, iMarginY, SCREENWIDTH - iMarginX*2 - iIconWidth - 30, iIconWidth);
+    self.titleLabel.frame = CGRectMake(iMarginX, CGRectGetMaxY(self.headView.frame), SCREENWIDTH - iMarginX*2 - 40, iTitleHeight);
+    self.juBaoBtn.frame = CGRectMake(SCREENWIDTH - iMarginX - 25, iMarginY + 7, 25, 25);
     self.timeLabel.frame = CGRectMake(iMarginX, CGRectGetMaxY(self.titleLabel.frame), SCREENWIDTH - iMarginX*4, iIconWidth/2);
 }
 

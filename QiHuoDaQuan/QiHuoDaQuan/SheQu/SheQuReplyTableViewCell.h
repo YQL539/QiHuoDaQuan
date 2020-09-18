@@ -10,7 +10,11 @@
 #import "SheQuDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
+@protocol SheQuReplyCellDelegate <NSObject>
 
+-(void)SheQuReplyJBBtnDidClicked:(UIButton *)sender;
+
+@end
 @interface SheQuReplyTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) UIView *bgView;
@@ -19,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *headView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, assign) CGFloat iTitleH;
+@property (nonatomic,strong) UIButton *juBaoBtn;
+@property (nonatomic,assign) id<SheQuReplyCellDelegate> replyDelegate;
 
 +(instancetype)initReplyCellWithtableView:(UITableView *)tableview;
 -(void)showDataWithModel:(SheQuReplyModel *)model;

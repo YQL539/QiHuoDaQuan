@@ -20,6 +20,10 @@
         self.showsHorizontalScrollIndicator = NO;
         self.bounces = NO;
         CGFloat BW = 120;
+        if (BW * titleArray.count < SCREENWIDTH) {
+            BW = SCREENWIDTH/titleArray.count;
+        }
+        
         
         
         for (int i = 0 ; i < titleArray.count; i ++) {
@@ -27,7 +31,7 @@
             [button setTitle:titleArray[i] forState:UIControlStateNormal];
             button.titleLabel.font = [UIFont systemFontOfSize:15];
             [button setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-            [button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            [button setTitleColor:[UIColor redColor] forState:UIControlStateSelected];
             button.backgroundColor = [UIColor whiteColor];
             button.frame = CGRectMake(BW * i, 0, BW, rect.size.height);
             if (i == 0) {
@@ -43,7 +47,7 @@
         // 计算ScrollView的宽度，设置contentSize
         CGFloat scrollWid = CGRectGetMaxX(self.subviews.lastObject.frame);
         self.contentSize = CGSizeMake(scrollWid, rect.size.height);
-        self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, rect.size.height - 2, BW, 2)];
+        self.colorView = [[UIView alloc] initWithFrame:CGRectMake(0, rect.size.height - 3, BW, 3)];
         self.colorView.backgroundColor = [UIColor redColor];
         self.colorView.layer.cornerRadius = 5;
         self.colorView.layer.masksToBounds = YES;
