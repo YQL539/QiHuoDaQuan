@@ -35,21 +35,27 @@
     return self;
 }
 - (void)initViews {
+    self.backgroundColor = [UIColor whiteColor];
     self.nameLabel = [[UILabel alloc] init];
+    self.nameLabel.textColor = [UIColor blackColor];
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     self.nameLabel.font = [UIFont systemFontOfSize:14];
     
     self.priceNowLabel = [[UILabel alloc] init];
+    self.priceNowLabel.textColor = [UIColor blackColor];
     self.priceNowLabel.textAlignment = NSTextAlignmentCenter;
     self.priceNowLabel.font =  [UIFont systemFontOfSize:15];
     
     self.priceChangeLabel = [[UILabel alloc] init];
+    
     self.priceChangeLabel.textAlignment = NSTextAlignmentCenter;
     self.priceChangeLabel.layer.cornerRadius = 7;
     self.priceChangeLabel.clipsToBounds = YES;
     self.priceChangeLabel.font =  [UIFont systemFontOfSize:15];
     
     self.recumentLabel = [[UILabel alloc] init];
+    self.recumentLabel.textColor = [UIColor blackColor];
+
     self.recumentLabel.textAlignment = NSTextAlignmentCenter;
     self.recumentLabel.font =  [UIFont systemFontOfSize:15];
     

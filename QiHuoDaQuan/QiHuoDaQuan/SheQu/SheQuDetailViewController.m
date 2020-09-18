@@ -16,6 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"帖子详情";
     self.detailArray = [NSMutableArray array];
     [self setSubviews];

@@ -33,6 +33,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self setTableView];
 }
 
@@ -40,14 +41,16 @@
     self.seleIndex = 0;
     UISearchBar *search = [[UISearchBar alloc]initWithFrame:CGRectMake(0,NAVIGATION_BAR_HEIGHT + 5, SCREENWIDTH, 40)];
     [self.view addSubview:search];
+    search.backgroundColor = [UIColor whiteColor];
+    search.barTintColor = [UIColor whiteColor];
     search.placeholder = @"请输入要搜索的内容";
-    
+
     NSArray *titleArray = @[@"上海期货交易所",@"郑州期货交易所",@"大连期货交易所",@"外盘期货交易所",@"指数期货"];
     self.scrollHeaderView = [[ScrollHeaderView alloc] initScrollViewWithTitle:titleArray andRect:CGRectMake(0, NAVIGATION_BAR_HEIGHT + 50, SCREENWIDTH, 40)];
     self.scrollHeaderView.headDelegate = self;
     [self.view addSubview:self.scrollHeaderView];
     
-    self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollHeaderView.frame), SCREENWIDTH,  SCREENHEIGHT - TAB_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50) style:UITableViewStylePlain];
+    self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollHeaderView.frame), SCREENWIDTH,  SCREENHEIGHT - TAB_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - 50 - 40) style:UITableViewStylePlain];
     [self.view addSubview:self.homeTableView];
     self.homeTableView.backgroundColor = [UIColor clearColor];
     _homeTableView.delegate = self;

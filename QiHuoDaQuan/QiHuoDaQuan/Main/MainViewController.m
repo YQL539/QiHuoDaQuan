@@ -52,6 +52,8 @@
     _scrollBgView.contentSize = CGSizeMake(SCREENWIDTH, SCREENHEIGHT*1.2);
     
     UISearchBar *search = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 5, SCREENWIDTH, 40)];
+    search.backgroundColor = [UIColor whiteColor];
+    search.barTintColor = [UIColor whiteColor];
     [_scrollBgView addSubview:search];
     search.placeholder = @"请输入要搜索的内容";
 
@@ -83,6 +85,7 @@
 }
 
 -(void)setBannerView{
+    self.view.backgroundColor = [UIColor whiteColor];
     self.banner = [DCCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 55, self.view.frame.size.width, 135) shouldInfiniteLoop:YES imageGroups:self.imageArr];
     _banner.autoScrollTimeInterval = 3;
     _banner.autoScroll = YES;
@@ -127,7 +130,7 @@
     self.scrollHeaderView.headDelegate = self;
     [self.scrollBgView addSubview:self.scrollHeaderView];
     
-    self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollHeaderView.frame), SCREENWIDTH,  SCREENHEIGHT*1.2 - TAB_BAR_HEIGHT - 40 - 55 - 130 - 135) style:UITableViewStylePlain];
+    self.homeTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.scrollHeaderView.frame), SCREENWIDTH,  SCREENHEIGHT*1.2 - TAB_BAR_HEIGHT - 40 - 55 - 130 - 135 - 50) style:UITableViewStylePlain];
     [self.scrollBgView addSubview:self.homeTableView];
     self.homeTableView.backgroundColor = [UIColor clearColor];
     _homeTableView.delegate = self;

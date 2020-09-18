@@ -17,9 +17,11 @@
 + (void)initialize {
     UINavigationBar *navigationBar = [UINavigationBar appearance];
     navigationBar.backgroundColor = [UIColor whiteColor];
+    
     //设置标题栏颜色
     navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor],NSFontAttributeName : [UIFont systemFontOfSize:20]};
     [navigationBar setTintColor:[UIColor blackColor]];
+    navigationBar.barTintColor = [UIColor whiteColor];
 }
 
 //重写push后返回按钮的文字,文字可以为空字符串.

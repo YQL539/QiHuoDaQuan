@@ -20,6 +20,7 @@
     self.topArray = [NSMutableArray array];
     self.seleIndex = 0;
     [self setSubviews];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)setSubviews{
@@ -31,6 +32,7 @@
     self.sheQuTableView.mj_footer = [MJRefreshBackFooter footerWithRefreshingBlock:^{
         [weakSelf loadMoreData];
     }];
+    self.sheQuTableView.backgroundColor = [UIColor whiteColor];
     [self loadNewData];
     [self setBannerView];
 }
@@ -164,6 +166,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BannerCELL"];
         if (cell == nil) {
             cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"BannerCELL"];
+            cell.backgroundColor = [UIColor whiteColor];
             [cell addSubview:self.banner];
         }
         return cell;

@@ -36,6 +36,7 @@ static NSString *const cellID = @"cellID";
     cycleScrollView.infiniteLoop = infiniteLoop;
     cycleScrollView.autoScroll = infiniteLoop;
     cycleScrollView.imgArr = imageGroups;
+    cycleScrollView.backgroundColor = [UIColor whiteColor];
     return cycleScrollView;
 }
 -(instancetype)initWithFrame:(CGRect)frame

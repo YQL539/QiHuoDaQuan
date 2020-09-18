@@ -154,7 +154,7 @@
     switch (indexPath.row) {
         case 0:{
             //头像
-            return 160.f;
+            return 200.f;
             break;
         }
         default:{

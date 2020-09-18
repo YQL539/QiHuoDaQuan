@@ -48,6 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self getLineData];
     [self setSubView];
 }
@@ -55,6 +56,7 @@
 -(void)setSubView{
     self.title = self.model.name;
     self.lineTabView = [[UITableView alloc]initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREENWIDTH, SCREENHEIGHT - NAVIGATION_BAR_HEIGHT) style:UITableViewStylePlain];
+    self.lineTabView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.lineTabView];
     _lineTabView.delegate = self;
     _lineTabView.dataSource = self;
@@ -101,7 +103,7 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LineImageCell"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [UIColor clearColor];
+            cell.backgroundColor = [UIColor whiteColor];
             
             UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREENWIDTH, cell.frame.size.height)];
             image.tag = 100;
@@ -122,7 +124,7 @@
         if (!cell) {
             cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"labelCellInden"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.backgroundColor = [UIColor clearColor];
+            cell.backgroundColor = [UIColor whiteColor];
             
             UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, (SCREENWIDTH - 20)/2, cell.frame.size.height)];
             title.textAlignment = NSTextAlignmentLeft;

@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     NSMutableArray * array = [NSMutableArray new];
     MainViewController * viewController1 =[MainViewController new];
     [array addObject:viewController1];
@@ -40,11 +41,18 @@
         viewController.tabBarItem.image = [[UIImage imageNamed:imagesNomal[i]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         viewController.tabBarItem.selectedImage = [[UIImage imageNamed:imagesSelect[i]]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        dict[NSForegroundColorAttributeName] = MAINCOLOR;
+        dict[NSForegroundColorAttributeName] = [UIColor grayColor];
         NSMutableDictionary *dictionaryForTextSelect = [NSMutableDictionary dictionary];
-        dictionaryForTextSelect[NSForegroundColorAttributeName] = [UIColor blueColor];
-        [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor clearColor]} forState:UIControlStateNormal];
+        dictionaryForTextSelect[NSForegroundColorAttributeName] = MAINCOLOR;
+        
+        [[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]} forState:UIControlStateNormal];
+        
+        
         [viewController.tabBarItem setTitleTextAttributes:dict forState:UIControlStateNormal];
+        [viewController.tabBarItem setTitleTextAttributes:dictionaryForTextSelect forState:UIControlStateSelected];
+        [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
+        [UITabBar appearance].translucent = NO;
+        
         
         NavigationViewController *nav = [[NavigationViewController alloc] initWithRootViewController:viewController];
          [self addChildViewController:nav];
