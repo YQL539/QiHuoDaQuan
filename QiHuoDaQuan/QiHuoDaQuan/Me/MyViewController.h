@@ -17,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) UITableView *discussTableView;
 @property (strong, nonatomic) NSMutableArray *discussArray;
 @property (nonatomic,copy)NSString *type;
+
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *videoImageView;
+@property (nonatomic, strong) UIButton *deleteBtn;
+@property (nonatomic, strong) UILabel *gifLable;
+@property (nonatomic, assign) NSInteger row;
+@property (nonatomic, strong) id asset;
 @end
 
 NS_ASSUME_NONNULL_END

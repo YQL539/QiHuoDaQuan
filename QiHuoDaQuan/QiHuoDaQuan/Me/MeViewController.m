@@ -13,7 +13,7 @@
 #import <SafariServices/SafariServices.h>
 
 @interface MeViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *meTableView;
 @property (nonatomic, strong) UIImage *headView;
 @property (nonatomic, strong) UIButton *logoutBtn;
 @property (nonatomic,strong) UIImage *headImage;
@@ -31,7 +31,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //登录后回到该界面时重新刷新数据
-    [self.tableView reloadData];
+    [self.meTableView reloadData];
     self.navigationController.navigationBar.hidden = YES;
 }
 
@@ -43,24 +43,24 @@
 -(void)setSubViews{
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.logoutBtn];
-    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.meTableView];
     if (@available(iOS 11.0, *)) {
-    self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    self.meTableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
     self.automaticallyAdjustsScrollViewInsets =NO;
     }
-    self.tableView.scrollEnabled = NO;
+    self.meTableView.scrollEnabled = NO;
 }
 
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - TAB_BAR_HEIGHT - _logoutBtn.frame.size.height - GetWidth(30)) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+- (UITableView *)meTableView {
+    if (!_meTableView) {
+        _meTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENWIDTH, SCREENHEIGHT - TAB_BAR_HEIGHT - _logoutBtn.frame.size.height - GetWidth(30)) style:UITableViewStylePlain];
+        _meTableView.backgroundColor = [UIColor whiteColor];
+        _meTableView.delegate = self;
+        _meTableView.dataSource = self;
+        _meTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
-    return _tableView;
+    return _meTableView;
 }
 
 -(UIButton *)logoutBtn{
@@ -255,7 +255,7 @@
             UIAlertAction *alertAction = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [[userModel shareDataModel] setLoginAccout:@""];
                 [[userModel shareDataModel] setLoginPassword:@""];
-                [self.tableView reloadData];
+                [self.meTableView reloadData];
                 [self showHubMessage:@"您已退出登录" delay:1];
             }];
             UIAlertAction *alert2Action = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
@@ -275,5 +275,17 @@
         [HUB hideAnimated:YES afterDelay:time];
         HUB.removeFromSuperViewOnHide = YES;
 }
+
+
+-(void)showAlertWithCustomeTitle:(NSString *)Title Infomation:(NSString *)information FirstBtnName:(NSString *)firstBtnName SecondBtn:(NSString *)SecondbtnName FirstAction:(void(^_Nullable)(UIAlertAction *action))firstAction SecondAction:(void(^_Nullable)(UIAlertAction *action))secondAction completedAction:(void (^ __nullable)(void))completedAction
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:Title message:information preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *alertAction = [UIAlertAction actionWithTitle:firstBtnName style:UIAlertActionStyleDefault handler:firstAction];
+    UIAlertAction *alert2Action = [UIAlertAction actionWithTitle:SecondbtnName style:UIAlertActionStyleDefault handler:secondAction];
+    [alertController addAction:alertAction];
+    [alertController addAction:alert2Action];
+    [self presentViewController:alertController animated:YES completion:completedAction];
+}
+
 
 @end

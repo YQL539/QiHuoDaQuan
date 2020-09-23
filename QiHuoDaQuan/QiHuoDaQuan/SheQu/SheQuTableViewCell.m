@@ -18,9 +18,29 @@
     {
         cell = [[SheQuTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
     }
     return cell;
+}
+
++ (UIImage *) screenImage:(UIView *)pView {
+    UIImage *pScreenImage;
+    UIGraphicsBeginImageContext(pView.frame.size);
+    [pView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    pScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return pScreenImage;
+}
+
+
++ (void) MastViewByImage:(UIView *)pMaskedView withMaskImage:(UIView *)pMaskImageView{
+    UIImage* pImg = [self screenImage:pMaskImageView];
+    CALayer *pMask = [CALayer layer];
+    pMask.contents = (id)[pImg CGImage];
+    pMask.frame = CGRectMake(0, 0, pImg.size.width , pImg.size.height );
+    pMaskedView.layer.mask = pMask;
+    pMaskedView.layer.masksToBounds = YES;
+    pMaskedView.tag = 10;
 }
 
 //填充cell
@@ -86,6 +106,26 @@
         [self.bgView addSubview:self.titleLabel];
     }
     return self;
+}
+
+//将UIView部分截取成UIimage图片格式
++(UIImage *)ClipToImageFromUIView:(UIView *)pBigView CGRect:(CGRect)rect{
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(pBigView.bounds.size, NO, [UIScreen mainScreen].scale);
+    [pBigView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage*pBigViewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGImageRef pCgImageRef = pBigViewImage.CGImage;
+    CGFloat pRectY = rect.origin.y*2;
+    CGFloat pRectX = rect.origin.x*2;
+    CGFloat pRectWidth = rect.size.width*2;
+    CGFloat pRectHeight = rect.size.height*2;
+    CGRect pToRect = CGRectMake(pRectX, pRectY, pRectWidth, pRectHeight);
+    CGImageRef imageRef = CGImageCreateWithImageInRect(pCgImageRef, pToRect);
+    UIImage *pToImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    return pToImage;
 }
 
 - (void)layoutSubviews {

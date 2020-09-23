@@ -11,6 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MeTableViewCell : UITableViewCell
+{
+    UILongPressGestureRecognizer * _longPressGestureRecognizer;
+    UIPanGestureRecognizer * _panGestureRecognizer;
+    NSIndexPath * _movingItemIndexPath;
+    UIView * _beingMovedPromptView;
+    CGPoint _sourceItemCollectionViewCellCenter;
+    
+    CADisplayLink * _displayLink;
+    CFTimeInterval _remainSecondsToBeginEditing;
+}
 @property (nonatomic, copy) NSString *content;
 @property (nonatomic, copy) NSString *iconImage;
 @property (nonatomic, copy) NSString *title;

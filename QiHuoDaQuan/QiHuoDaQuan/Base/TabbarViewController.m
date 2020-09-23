@@ -7,11 +7,7 @@
 //
 
 #import "TabbarViewController.h"
-#import "MainViewController.h"
-#import "SheQuViewController.h"
-#import "MeViewController.h"
-#import "MarketViewController.h"
-#import "NavigationViewController.h"
+
 @interface TabbarViewController ()
 
 @end

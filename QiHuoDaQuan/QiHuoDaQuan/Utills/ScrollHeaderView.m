@@ -14,18 +14,13 @@
 
 - (instancetype)initScrollViewWithTitle:(NSArray *)titleArray andRect:(CGRect)rect {
     if (self = [super initWithFrame:rect]) {
-//        self.bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, rect.size.width, rect.size.height)];
-//        self.bgView.backgroundColor = [UIColor whiteColor];
-//        [self addSubview:self.bgView];
         self.showsHorizontalScrollIndicator = NO;
         self.bounces = NO;
         CGFloat BW = 120;
         if (BW * titleArray.count < SCREENWIDTH) {
             BW = SCREENWIDTH/titleArray.count;
         }
-        
-        
-        
+
         for (int i = 0 ; i < titleArray.count; i ++) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setTitle:titleArray[i] forState:UIControlStateNormal];

@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MainViewController.h"
+#import "SheQuViewController.h"
+#import "MeViewController.h"
+#import "MarketViewController.h"
+#import "NavigationViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TabbarViewController : UITabBarController

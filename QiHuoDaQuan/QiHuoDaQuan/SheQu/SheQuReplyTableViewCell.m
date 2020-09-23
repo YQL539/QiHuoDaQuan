@@ -23,6 +23,26 @@
     return cell;
 }
 
+//将UIView部分截取成UIimage图片格式
++(UIImage *)ClipToImageFromUIView:(UIView *)pBigView CGRect:(CGRect)rect{
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(pBigView.bounds.size, NO, [UIScreen mainScreen].scale);
+    [pBigView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage*pBigViewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGImageRef pCgImageRef = pBigViewImage.CGImage;
+    CGFloat pRectY = rect.origin.y*2;
+    CGFloat pRectX = rect.origin.x*2;
+    CGFloat pRectWidth = rect.size.width*2;
+    CGFloat pRectHeight = rect.size.height*2;
+    CGRect pToRect = CGRectMake(pRectX, pRectY, pRectWidth, pRectHeight);
+    CGImageRef imageRef = CGImageCreateWithImageInRect(pCgImageRef, pToRect);
+    UIImage *pToImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    return pToImage;
+}
+
 //填充cell
 -(void)showDataWithModel:(SheQuReplyModel *)model{
     self.titleLabel.text = model.answer_content;
@@ -67,6 +87,18 @@
     [self addSubview:self.juBaoBtn];
 }
 
++(void)addCoreBlurView:(UIView *)pView
+{
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+    effectview.frame = pView.frame;
+    [pView addSubview:effectview];
+    [UIView animateWithDuration:3 animations:^{
+        effectview.alpha = 0;
+        effectview.alpha = 1;
+    } completion:nil];
+}
+
 //重写布局
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -82,6 +114,35 @@
     if (self.replyDelegate && [self.replyDelegate respondsToSelector:@selector(SheQuReplyJBBtnDidClicked:)]) {
         [self.replyDelegate SheQuReplyJBBtnDidClicked:sender];
     }
+}
+
+
++ (void) MastViewByImage:(UIView *)pMaskedView withMaskImage:(UIView *)pMaskImageView{
+    UIImage* pImg = [self screenImage:pMaskImageView];
+    CALayer *pMask = [CALayer layer];
+    pMask.contents = (id)[pImg CGImage];
+    pMask.frame = CGRectMake(0, 0, pImg.size.width , pImg.size.height );
+    pMaskedView.layer.mask = pMask;
+    pMaskedView.layer.masksToBounds = YES;
+    pMaskedView.tag = 10;
+}
+
+
+
+//高斯模糊图片
++(UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *inputImage= [CIImage imageWithCGImage:image.CGImage];
+    //设置filter
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:inputImage forKey:kCIInputImageKey]; [filter setValue:@(blur) forKey: @"inputRadius"];
+    //高斯模糊图片
+    CIImage *result=[filter valueForKey:kCIOutputImageKey];
+    CGImageRef outImage=[context createCGImage:result fromRect:[inputImage extent]];
+    UIImage *blurImage=[UIImage imageWithCGImage:outImage];
+    CGImageRelease(outImage);
+    return blurImage;
 }
 
 - (void)layoutSubviews {
@@ -108,4 +169,14 @@
     return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
 }
 
+
+
++ (UIImage *) screenImage:(UIView *)pView {
+    UIImage *pScreenImage;
+    UIGraphicsBeginImageContext(pView.frame.size);
+    [pView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    pScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return pScreenImage;
+}
 @end

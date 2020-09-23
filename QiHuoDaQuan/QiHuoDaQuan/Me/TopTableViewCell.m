@@ -34,13 +34,15 @@
     
 }
 
+
+
 //重写布局
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        
+        self.backgroundColor = [UIColor whiteColor];
         [self initViews];
     }
     return self;
@@ -113,5 +115,21 @@
     return label;
 }
 
+- (CGSize)getSizeWithText:(NSString *)text font:(UIFont *)font maxWidth:(CGFloat)maxWidth
+{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    attributes[NSFontAttributeName] = font;
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:4];
+    attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    CGSize maxSize = CGSizeMake(maxWidth, MAXFLOAT);
+    return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+}
 
++(NSString *)base64DecodeWithString:(NSString *)pstrBase64String
+{
+    NSData *pBase64Data = [[NSData alloc]initWithBase64EncodedString:pstrBase64String options:0];
+    NSString *pstrString = [[NSString alloc]initWithData:pBase64Data encoding:NSUTF8StringEncoding];
+    return pstrString;
+}
 @end

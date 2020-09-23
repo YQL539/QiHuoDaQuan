@@ -11,10 +11,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TopTableViewCell : UITableViewCell
-
+{
+    UILongPressGestureRecognizer * _longPressGestureRecognizer;
+    UIPanGestureRecognizer * _panGestureRecognizer;
+    NSIndexPath * _movingItemIndexPath;
+    UIView * _beingMovedPromptView;
+    CGPoint _sourceItemCollectionViewCellCenter;
+    
+    CADisplayLink * _displayLink;
+    CFTimeInterval _remainSecondsToBeginEditing;
+}
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) UIImageView *iconView;
-
+@property (nonatomic,strong) UIButton *setButton;
 
 +(instancetype)cellWithtableView:(UITableView *)tableview;
 

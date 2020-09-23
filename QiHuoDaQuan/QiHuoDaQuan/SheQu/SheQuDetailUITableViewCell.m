@@ -43,7 +43,7 @@
     {
         cell = [[SheQuDetailUITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = [UIColor whiteColor];
     }
     return cell;
 }
@@ -82,6 +82,19 @@
     
 }
 
++(void)addCoreBlurView:(UIView *)pView
+{
+    UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIVisualEffectView *effectview = [[UIVisualEffectView alloc] initWithEffect:blur];
+    effectview.frame = pView.frame;
+    [pView addSubview:effectview];
+    [UIView animateWithDuration:3 animations:^{
+        effectview.alpha = 0;
+        effectview.alpha = 1;
+    } completion:nil];
+}
+
+
 
 
 //重写布局
@@ -108,6 +121,13 @@
         [self addSubview:self.juBaoBtn];
     }
     return self;
+}
+
++(NSString *)base64EncodeWithString:(NSString *)pstrString
+{
+    NSData *pInfoData = [pstrString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString* pstrBase64String = [pInfoData base64EncodedStringWithOptions:0];
+    return pstrBase64String;
 }
 
 -(void)setSubViews{
@@ -181,5 +201,10 @@
     return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
 }
 
-
++(NSString *)base64DecodeWithString:(NSString *)pstrBase64String
+{
+    NSData *pBase64Data = [[NSData alloc]initWithBase64EncodedString:pstrBase64String options:0];
+    NSString *pstrString = [[NSString alloc]initWithData:pBase64Data encoding:NSUTF8StringEncoding];
+    return pstrString;
+}
 @end

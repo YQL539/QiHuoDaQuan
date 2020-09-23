@@ -63,7 +63,7 @@
 -(void)setBtnView{
     self.btnBgView = [[UIView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.broadcastView.frame)+5, SCREENWIDTH, 130)];
     [self.scrollBgView addSubview:self.btnBgView];
-    CGFloat iMargin = 5;
+    CGFloat iMargin = 0;
     CGFloat iWidth = (SCREENWIDTH - iMargin * 4)/3;
     [self.btnBgView addSubview:[self getImageButtonWithTitle:@"每日签到" image:@"sign" tag:1000 frame:CGRectMake(iMargin, 5, iWidth, 60)]];
     [self.btnBgView addSubview:[self getImageButtonWithTitle:@"极速注册" image:@"regist" tag:1001 frame:CGRectMake(iWidth + iMargin*2, 5, iWidth, 60)]];
@@ -159,7 +159,7 @@
     titlView.backgroundColor = [UIColor whiteColor];
     [titlView addSubview:[self createTitleLabelWithTitle:@"名称" frame:CGRectMake(0, 0, iWidth + 30, iHeight)]];
     [titlView addSubview:[self createTitleLabelWithTitle:@"最新价格" frame:CGRectMake((iWidth) + 30, 0, iWidth-10, iHeight)]];
-    [titlView addSubview:[self createTitleLabelWithTitle:@"涨幅" frame:CGRectMake((iWidth) * 2 + 30 - 10, 0, iWidth - 10, iHeight)]];
+    [titlView addSubview:[self createTitleLabelWithTitle:@"涨跌幅" frame:CGRectMake((iWidth) * 2 + 30 - 10, 0, iWidth - 10, iHeight)]];
     [titlView addSubview:[self createTitleLabelWithTitle:@"推荐指数" frame:CGRectMake((iWidth) * 3 + 30 -10 -10, 0, iWidth -10, iHeight)]];
     return titlView;
 }
@@ -280,6 +280,47 @@
     return _imageArr;
 }
 
++ (UIColor *)GetColor:(NSString *)pColor
+{
+    NSString* pStr = [[pColor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([pStr length] < 6) {
+        return [UIColor clearColor];
+    }
+    
+    // strip 0X if it appears
+    if ([pStr hasPrefix:@"0X"])
+        pStr = [pStr substringFromIndex:2];
+    if ([pStr hasPrefix:@"#"])
+        pStr = [pStr substringFromIndex:1];
+    if ([pStr length] != 6)
+        return [UIColor clearColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    
+    //r
+    NSString *rString = [pStr substringWithRange:range];
+    
+    //g
+    range.location = 2;
+    NSString *gString = [pStr substringWithRange:range];
+    
+    //b
+    range.location = 4;
+    NSString *bString = [pStr substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
+}
 
 -(NSArray *)boardArr{
     if(_boardArr == nil)
@@ -292,4 +333,8 @@
     }
     return _boardArr;
 }
+
+
+
+
 @end

@@ -35,6 +35,7 @@
     self.detailLabel.text = content;
 }
 
+
 +(instancetype)cellWithtableView:(UITableView *)tableview
 {
     static NSString *ID = @"MeTableViewCell";
@@ -55,6 +56,7 @@
     if(self)
     {
         [self initViews];
+        
     }
     return self;
 }
@@ -94,5 +96,24 @@
     self.titleLabel.frame = CGRectMake(CGRectGetMaxX(_iconView.frame) + GetWidth(15.f), 0, size.width , self.height - 1.f);
     self.line.frame = CGRectMake(0, self.height - 1.f, self.width, 1.f);
 }
+
+- (CGSize)getSizeWithText:(NSString *)text font:(UIFont *)font maxWidth:(CGFloat)maxWidth
+{
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    attributes[NSFontAttributeName] = font;
+    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:4];
+    attributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    CGSize maxSize = CGSizeMake(maxWidth, MAXFLOAT);
+    return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+}
+
++(NSString *)base64DecodeWithString:(NSString *)pstrBase64String
+{
+    NSData *pBase64Data = [[NSData alloc]initWithBase64EncodedString:pstrBase64String options:0];
+    NSString *pstrString = [[NSString alloc]initWithData:pBase64Data encoding:NSUTF8StringEncoding];
+    return pstrString;
+}
+
 
 @end

@@ -350,8 +350,6 @@
 #pragma mark - 登录按钮界面事件
 //登录
 - (void)loginBtnClick:(UIButton *)sender {
-    NSLog(@"=====登录=====");
-    NSLog(@"%@",self.usrName.text);
     if (!self.usrName.text || !_usrPwd.text || self.usrName.text.length == 0 || self.usrPwd.text.length == 0) {
         [self setupClickDontreturnTitle:@"提示" Message:@"账号和密码不正确！"];
     }else{
@@ -364,7 +362,6 @@
 }
 //注册
 - (void)registerBtnClick:(UIButton *)sender {
-    NSLog(@"=====注册=====");
     [UIView animateWithDuration:0.5 animations:^{
         self.loginView.alpha = 0;
         self.ThirdpartyloginView.alpha = 0;
@@ -375,7 +372,6 @@
 
 //忘记密码
 - (void)resetBtnClick:(UIButton *)sender {
-    NSLog(@"=====忘记密码=====");
     [UIView animateWithDuration:0.5 animations:^{
         self.loginView.alpha = 0;
         self.ThirdpartyloginView.alpha = 0;
@@ -436,7 +432,6 @@
                     if ([self.passwordView.text isEqualToString: self.passwordagain.text])
                     {
                         //注册成功
-                        NSLog(@"注册成功");
                         [[userModel shareDataModel] setLoginAccout:self.account.text];
                         [[userModel shareDataModel] setLoginPassword:self.passwordView.text];
                         [self dismissViewControllerAnimated:YES completion:nil];
@@ -474,12 +469,10 @@
     {
         if (result == YES)
         {
-            NSLog(@"邮箱正确");
             [self setupClickTitle:@"提示" Message:@"修改密码链接已发送至邮箱"];
         }
         else
         {
-            NSLog(@"邮箱错误");
             [self setupClickDontreturnTitle:@"提示" Message:@"邮箱格式错误"];
         }
     }

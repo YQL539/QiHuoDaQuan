@@ -26,13 +26,27 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SheQuZanModel : JSONModel
-
+{
+    @public
+    NSMutableArray *m_pImageArray;
+    UIScrollView *m_pScrollView;
+    UIView *m_pNavBar;
+    NSUInteger m_iCurrentIndex;
+    BOOL isBarHidden;
+}
 @property(nonatomic,copy)NSString * user_name;
 
 @end
 
 @interface SheQuReplyModel : JSONModel
-
+{
+    @public
+    NSMutableArray *m_pImageArray;
+    UIScrollView *m_pScrollView;
+    UIView *m_pNavBar;
+    NSUInteger m_iCurrentIndex;
+    BOOL isBarHidden;
+}
 @property(nonatomic,copy)NSString * answer_content;
 @property(nonatomic,copy)NSString * avatar_url;
 @property(nonatomic,copy)NSString * user_name;

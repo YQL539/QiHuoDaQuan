@@ -21,6 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SheQuDetailUITableViewCell : UITableViewCell
+{
+    @public
+    NSMutableArray *m_pImageArray;
+    UIScrollView *m_pScrollView;
+    UIView *m_pNavBar;
+    NSUInteger m_iCurrentIndex;
+    BOOL isBarHidden;
+}
 @property (nonatomic,assign) id<SheQuDetailUITableViewCellDelegate> delegate;
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel *authorLabel;
@@ -33,7 +41,18 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) UIButton *pingBiBtn;
 @property (nonatomic,strong) UIButton *juBaoBtn;
 
+- (void)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+   willMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
+- (void)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+    didMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 
+- (BOOL)collectionView:(UICollectionView *)collectionView
+canMoveItemAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+    canMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 +(instancetype)initSheQuDetailTableViewCellWithtableView:(UITableView *)tableview;
 -(void)showSheQuDetailModelDataWithModel:(SheQuDetailModel *)model;
 @end

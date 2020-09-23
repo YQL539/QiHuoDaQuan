@@ -18,6 +18,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SheQuViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,ScrollHeaderViewDelegate,DCCycleScrollViewDelegate>
+{
+    @public
+    NSMutableArray *m_pImageArray;
+    UIScrollView *m_pScrollView;
+    UIView *m_pNavBar;
+    NSUInteger m_iCurrentIndex;
+    BOOL isBarHidden;
+}
+
 @property (strong, nonatomic) NSMutableArray *sheQuArray;
 @property (nonatomic,strong)DCCycleScrollView *banner;
 @property (nonatomic,strong) UIPageControl *pageControl;

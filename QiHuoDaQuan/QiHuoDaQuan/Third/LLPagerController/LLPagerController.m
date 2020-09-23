@@ -131,11 +131,6 @@ UIKIT_STATIC_INLINE NSValue * LLUnderLineFrame(LLPagerUnderlineSizeType sizeType
 @implementation LLPagerController
 
 #pragma mark - LifeCycle
-
-- (void)dealloc {
-    NSLog(@"%@ - dealloc",[self class]);
-}
-
 - (instancetype)init {
     if (self = [super init]) {
         [self setupConfigerSetting];

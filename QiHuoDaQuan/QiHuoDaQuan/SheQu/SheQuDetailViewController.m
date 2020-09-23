@@ -22,15 +22,24 @@
     [self setSubviews];
 }
 
++(NSString *)GetCurrentTime
+{
+    NSDateFormatter *pFormatter= [[NSDateFormatter alloc]init];
+    [pFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *pstrTime = [pFormatter stringFromDate:[NSDate date]];
+    return pstrTime;
+    
+}
+
 -(void)setSubviews{
-    self.detailView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREENWIDTH, SCREENHEIGHT - NAVIGATION_BAR_HEIGHT - 50) style:UITableViewStylePlain];
-    _detailView.backgroundColor = [UIColor whiteColor];
-    _detailView.delegate = self;
-    _detailView.dataSource = self;
-    [self.view addSubview:self.detailView];
+    self.sheQuDetailView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVIGATION_BAR_HEIGHT, SCREENWIDTH, SCREENHEIGHT - NAVIGATION_BAR_HEIGHT - 50) style:UITableViewStylePlain];
+    _sheQuDetailView.backgroundColor = [UIColor whiteColor];
+    _sheQuDetailView.delegate = self;
+    _sheQuDetailView.dataSource = self;
+    [self.view addSubview:self.sheQuDetailView];
     
     self.lunchBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.lunchBtn.frame = CGRectMake(15, CGRectGetMaxY(self.detailView.frame) + 5, SCREENWIDTH - 30, 40);
+    self.lunchBtn.frame = CGRectMake(15, CGRectGetMaxY(self.sheQuDetailView.frame) + 5, SCREENWIDTH - 30, 40);
     [self.lunchBtn setTitle:@"发表评论" forState:UIControlStateNormal];
     [self.lunchBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.lunchBtn.layer.cornerRadius = 5;
@@ -42,6 +51,27 @@
     [self fetchData];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[[UIImage imageNamed:@"shoucang"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]style:UIBarButtonItemStylePlain target:self action:@selector(SheQuZanSCBtnDidClicked:)];
+}
+
+
++ (UIImage *) screenImage:(UIView *)pView {
+    UIImage *pScreenImage;
+    UIGraphicsBeginImageContext(pView.frame.size);
+    [pView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    pScreenImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return pScreenImage;
+}
+
+
++ (void) MastViewByImage:(UIView *)pMaskedView withMaskImage:(UIView *)pMaskImageView{
+    UIImage* pImg = [self screenImage:pMaskImageView];
+    CALayer *pMask = [CALayer layer];
+    pMask.contents = (id)[pImg CGImage];
+    pMask.frame = CGRectMake(0, 0, pImg.size.width , pImg.size.height );
+    pMaskedView.layer.mask = pMask;
+    pMaskedView.layer.masksToBounds = YES;
+    pMaskedView.tag = 10;
 }
 
 -(void)setPinglun{
@@ -79,7 +109,7 @@
     if (section == 0) {
         nameLabel.text = @"原贴";
     }else{
-        nameLabel.text = [NSString stringWithFormat:@"评论(%ld)",self.detailModel.answers.count];
+        nameLabel.text = [NSString stringWithFormat:@"评论(%ld)",self.sheQuDetailModel.answers.count];
     }
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.textAlignment = NSTextAlignmentCenter;
@@ -97,7 +127,7 @@
         return 1;
     }
     if (section == 1) {
-        return self.detailModel.answers.count;
+        return self.sheQuDetailModel.answers.count;
     }
     return 0;
 }
@@ -106,12 +136,12 @@
     if (indexPath.section == 0) {
         SheQuDetailUITableViewCell *cell = [SheQuDetailUITableViewCell initSheQuDetailTableViewCellWithtableView:tableView];
         cell.delegate = self;
-        [cell showSheQuDetailModelDataWithModel:self.detailModel];
+        [cell showSheQuDetailModelDataWithModel:self.sheQuDetailModel];
         return cell;
     }
     
     if (indexPath.section == 1) {
-        SheQuReplyModel *model = self.detailModel.answers[indexPath.row];
+        SheQuReplyModel *model = self.sheQuDetailModel.answers[indexPath.row];
         SheQuReplyTableViewCell *cell = [SheQuReplyTableViewCell initReplyCellWithtableView:tableView];
         cell.replyDelegate = self;
         [cell showDataWithModel:model];
@@ -122,12 +152,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        CGSize detailSize = [self getSizeWithText:self.detailModel.detail font:[UIFont systemFontOfSize:15] maxWidth:(SCREENWIDTH - GetWidth(15)*2)];
+        CGSize detailSize = [self getSizeWithText:self.sheQuDetailModel.detail font:[UIFont systemFontOfSize:15] maxWidth:(SCREENWIDTH - GetWidth(15)*2)];
         return detailSize.height + GetWidth(140.f);
     }
     
     if (indexPath.section == 1) {
-        SheQuReplyModel *model = self.detailModel.answers[indexPath.row];
+        SheQuReplyModel *model = self.sheQuDetailModel.answers[indexPath.row];
         CGSize detailSize = [self getSizeWithText:model.answer_content font:[UIFont systemFontOfSize:16] maxWidth:(SCREENWIDTH - GetWidth(15)*2)];
         return detailSize.height + GetWidth(70.f);
     }
@@ -177,9 +207,9 @@
                                                                   options:NSJSONReadingMutableContainers
                                                                     error:&err];
         SheQuDetailModel *model = [[SheQuDetailModel alloc]initWithDictionary:resultDic[@"data"] error:nil];
-        self.detailModel = model;
-        if (self.detailModel) {
-            [self.detailView reloadData];
+        self.sheQuDetailModel = model;
+        if (self.sheQuDetailModel) {
+            [self.sheQuDetailView reloadData];
         }else{
             [self showAlertWithTitle:@"提示" Infomation:@"该帖子因涉及违禁已被删除" completedAction:^(UIAlertAction *action) {
                 [self.navigationController popViewControllerAnimated:YES];
@@ -310,9 +340,7 @@
         [dataArray addObject:self.model];
         BOOL isOk =  [NSKeyedArchiver archiveRootObject:dataArray toFile:filePath];
             if (isOk) {
-                NSLog(@"dataArray.count == 0好了");
             }else{
-                NSLog(@"失败");
             }
     }else{
         NSMutableArray *saveArray = [NSMutableArray arrayWithArray:dataArray];
@@ -328,7 +356,6 @@
         BOOL isOk =  [NSKeyedArchiver archiveRootObject:saveArray toFile:filePath];
         if (isOk) {
         }else{
-            NSLog(@"失败");
         }
     }
 }

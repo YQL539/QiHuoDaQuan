@@ -23,6 +23,15 @@
     return retStr;
 }
 
+//计算文本宽度
+- (CGFloat)calcWidthWithTitle:(NSString *)title font:(CGFloat)font {
+    NSStringDrawingOptions options =  NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading;
+    CGRect rect = [title boundingRectWithSize:CGSizeMake(MAXFLOAT,MAXFLOAT) options:options attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font]} context:nil];
+    
+    CGFloat realWidth = ceilf(rect.size.width);
+    return realWidth;
+}
+
 -(void)getLineData{
     NSString *waiP = [NSString stringWithFormat:@"%@万",[self GettRandomNumber:500 to:1200]];
     NSString *neiP = [NSString stringWithFormat:@"%@万",[self GettRandomNumber:500 to:1200]];
@@ -33,13 +42,13 @@
     NSString *zhouZ = [NSString stringWithFormat:@"%@%%",[self GettRandomNumber:1 to:30]];
     self.lineArray = @[
         @{@"title":@"名称",@"detail":self.model.name},
-        @{@"title":@"今日价格",@"detail":self.model.buyPrice},
-        @{@"title":@"今日涨跌",@"detail":self.model.kuiSun},
-        @{@"title":@"今日涨幅",@"detail":self.model.zhangFu},
-        @{@"title":@"外盘",@"detail":waiP},
-        @{@"title":@"内盘",@"detail":neiP},
-        @{@"title":@"现值",@"detail":dayJie},
-        @{@"title":@"存货周转率",@"detail":zhouZ},
+        @{@"title":@"现价",@"detail":self.model.buyPrice},
+        @{@"title":@"涨跌",@"detail":self.model.kuiSun},
+        @{@"title":@"涨幅",@"detail":self.model.zhangFu},
+        @{@"title":@"净流入",@"detail":waiP},
+        @{@"title":@"净流出",@"detail":neiP},
+        @{@"title":@"分时量",@"detail":dayJie},
+        @{@"title":@"换手率",@"detail":zhouZ},
         @{@"title":@"日增",@"detail":dayIncrease},
         @{@"title":@"持仓",@"detail":chiCang},
         @{@"title":@"前值",@"detail":qianJie},
@@ -60,6 +69,29 @@
     [self.view addSubview:self.lineTabView];
     _lineTabView.delegate = self;
     _lineTabView.dataSource = self;
+    
+    
+    //定义一个容器视图来存放分享内容和两个操作按钮
+    UIView *pContainer = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width - 300) / 2, (self.view.frame.size.height - 400) / 2, 300, 400)];
+    pContainer.layer.cornerRadius = 7;
+    pContainer.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    pContainer.layer.borderWidth = 1;
+    pContainer.layer.masksToBounds = YES;
+    pContainer.backgroundColor = [UIColor whiteColor];
+    pContainer.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    
+    UIButton *pCancelBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [pCancelBtn setImage:[UIImage imageNamed:@"return_key"] forState:UIControlStateNormal];
+    pCancelBtn.frame = CGRectMake(18, 16, 11, 17);
+    [pCancelBtn addTarget:self action:@selector(cancelBtnClickHandler:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UITableView *pTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 48, 300, 400)];
+    pTableView.backgroundColor = [UIColor whiteColor];
+    pTableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    pTableView.dataSource = self;
+    pTableView.delegate = self;
+    pTableView.showsVerticalScrollIndicator = YES;
+    [pTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -89,14 +121,57 @@
     [titlView addSubview:nameLabel];
     NSString *title = @"";
     if (section == 0) {
-        title = @"分时行情图";
+        title = @"分时图";
     }
     if (section ==1) {
-        title = @"指数指标";
+        title = @"指数";
     }
     nameLabel.text = title;
     return titlView;
 }
+
++ (UIColor *)GetColor:(NSString *)pColor alpha:(CGFloat) dAlpha
+{
+    NSString* pStr = [[pColor stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([pStr length] < 6) {
+        return [UIColor clearColor];
+    }
+    
+    // strip 0X if it appears
+    if ([pStr hasPrefix:@"0X"])
+        pStr = [pStr substringFromIndex:2];
+    if ([pStr hasPrefix:@"#"])
+        pStr = [pStr substringFromIndex:1];
+    if ([pStr length] != 6)
+        return [UIColor clearColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    
+    //r
+    NSString *rString = [pStr substringWithRange:range];
+    
+    //g
+    range.location = 2;
+    NSString *gString = [pStr substringWithRange:range];
+    
+    //b
+    range.location = 4;
+    NSString *bString = [pStr substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:dAlpha];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LineImageCell"];

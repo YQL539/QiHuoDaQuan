@@ -16,6 +16,7 @@
 -(instancetype)initAlertWKWebviewWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setSubviews:frame];
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -26,10 +27,12 @@
     [self addSubview:_bgView];
     
     self.webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height - _underViewHeight)];
+    self.webView.backgroundColor = [UIColor whiteColor];
     //创建网页配置对象
      WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
      _webView = [[WKWebView alloc] initWithFrame:CGRectZero configuration:config];
      _webView.UIDelegate = self;
+    _webView.backgroundColor = [UIColor whiteColor];
      _webView.navigationDelegate = self;
       [_webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
      [_bgView addSubview:_webView];
@@ -69,6 +72,15 @@
     [_bgView addSubview:_sureBtn];
 }
 
++(NSString *)GetCurrentTime
+{
+    NSDateFormatter *pFormatter= [[NSDateFormatter alloc]init];
+    [pFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *pstrTime = [pFormatter stringFromDate:[NSDate date]];
+    return pstrTime;
+    
+}
+
 -(void)sureBtnDidClicked:(UIButton *)button{
     [self removeAlertWKWebview];
 }
@@ -95,6 +107,23 @@
 
 -(void)removeAlertWKWebview{
     [self removeFromSuperview];
+}
+
+//判断是否是手机号码
++ (BOOL) IsValiddateMobile:(NSString*)pstrMobile
+{
+//    手机号以13.15.17。18开头
+    NSString* pPhoneRegex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9]))\\d{8}$";
+    
+    NSPredicate* pPhoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",pPhoneRegex];
+    return [pPhoneTest evaluateWithObject:pstrMobile];
+}
+
+//判断是不是邮箱
++ (BOOL) IsValidateEmail:(NSString *)pEmail{
+    NSString *pEmailCheck = @"[A-Z0-9a-z._%+-]+@[A-Z0-9a-z.-]+[A-Za-z]{2,4}";
+    NSPredicate *pEmailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",pEmailCheck];
+    return [pEmailTest evaluateWithObject:pEmail];
 }
 
 // 记得取消监听
@@ -126,4 +155,22 @@
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
+
+
+//获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
++(NSString *)FirstCharactor:(NSString *)pString
+{
+    //转成了可变字符串
+    NSMutableString *pStr = [NSMutableString stringWithString:pString];
+    //先转换为带声调的拼音
+    CFStringTransform((CFMutableStringRef)pStr,NULL, kCFStringTransformMandarinLatin,NO);
+    //再转换为不带声调的拼音
+    CFStringTransform((CFMutableStringRef)pStr,NULL, kCFStringTransformStripDiacritics,NO);
+    //转化为大写拼音
+    NSString *pPinYin = [pStr capitalizedString];
+    //获取并返回首字母
+    return [pPinYin substringToIndex:1];
+}
+
+
 @end

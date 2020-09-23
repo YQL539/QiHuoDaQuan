@@ -25,9 +25,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat iTitleH;
 @property (nonatomic,strong) UIButton *juBaoBtn;
 @property (nonatomic,assign) id<SheQuReplyCellDelegate> replyDelegate;
+- (void)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+   willMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
+- (void)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+    didMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
+
+- (BOOL)collectionView:(UICollectionView *)collectionView
+canMoveItemAtIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)collectionView:(UICollectionView *)collectionView
+       itemAtIndexPath:(NSIndexPath *)sourceIndexPath
+    canMoveToIndexPath:(NSIndexPath *)destinationIndexPath;
 
 +(instancetype)initReplyCellWithtableView:(UITableView *)tableview;
 -(void)showDataWithModel:(SheQuReplyModel *)model;
+
 @end
 
 NS_ASSUME_NONNULL_END

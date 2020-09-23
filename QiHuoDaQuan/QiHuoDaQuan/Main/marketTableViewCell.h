@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "data.h"
 NS_ASSUME_NONNULL_BEGIN
 @class dataModel;
 @interface marketTableViewCell : UITableViewCell
